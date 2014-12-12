@@ -2,6 +2,8 @@ Introduction
 ============
 This project aims to provide hardware and software to build a versatile and generic device that can be used to connect all sorts of sensors and actuators to a CANopen network. My main intention is to use these devices in home automation applications.
 
+Originally I wanted to cal the project CANduino but that name is already taken. Now I think that AGCON --- Arduino Generic CANopen Node --- is much more descriptive and unique.
+
 The hardware is based on the ubiquitous ATmega 328 microcontroller found e.g. on the Arduino Uno. The mc is preflashed with the Arduino bootloader and can be programmed using an FTDI USB to serial adapter.
 
 Connection to the CAN bus is established via an MCP2515 CAN controller.

@@ -34,3 +34,14 @@ eagle.epf
 *.info
 
 *.eps
+
+#C ignores
+*.hex
+*.o
+*.elf
+*.DS_Store
+*.d
+
+
+# Other ignores
+.directory

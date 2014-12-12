@@ -1,0 +1,5 @@
+repo: 4472ee7c6c3efd98790a6ec71a187e2f8431c08c
+node: 7740ac6fdedc23e1ed6908d3d7db54833c88572b
+branch: default
+latesttag: Before_NVRAM_LED_LSS_cleanup
+latesttagdistance: 668
