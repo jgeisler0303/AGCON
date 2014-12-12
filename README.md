@@ -22,6 +22,7 @@ In the future I plan to rewrite the software as an Arduino library so that the A
 
 Getting Started
 ===============
+To compile the software, got to the Software/CanFestival/examples/Arduino subfolder and run ```make```. (This is assuming you have the avr-gcc compiler installed). If you have a USB to serial adapter connected to your PC and board you can also run ```make flash``` to directly download the new programm to your controller.
 The software is not restricted to run on the supplied controller board. Though I haye not tested it, the software can be run on most Arduino boards with a CAN bus shield. But beware that in its current incarnation the SPI chip selection of the MCP2515 is not connected to PB2 (Arduino pin 10). If you want to use the software with CAN bus shields you will probably have to change the following line in mcp_can.c to match your chip select configuration:
 ```c
 #define DDR_CS DDRD
