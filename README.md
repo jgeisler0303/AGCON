@@ -8,7 +8,7 @@ Connection to the CAN bus is established via an MCP2515 CAN controller.
 
 The free input and output pins of the ATmega are not routed to the available connectors. Instead, the board features a prototyping area that can be used to customize the device to connect to any sensor or actuator. This allows to mass-produce the board and use it for many different applications.
 
-The software is currently based on the www.canfesitval.org CANopen stack adapted to run on the ATmega 328. For sending and receiving of CAN messages a modified version of the https://github.com/Seeed-Studio/CAN_BUS_Shield library is used. This example code is configured to let the user read 6 digital inputs and write 4 digital outputs. The software has to be compiled using the avr-gcc via a makefile.
+The software is currently based on the http://www.canfestival.org/ CANopen stack adapted to run on the ATmega 328. For sending and receiving of CAN messages a modified version of the https://github.com/Seeed-Studio/CAN_BUS_Shield library is used. This example code is configured to let the user read 6 digital inputs and write 4 digital outputs. The software has to be compiled using the avr-gcc via a makefile.
 
 The CANopen stack is a protocol that runs ontop of the CAN communication layer and facilitates the acces to device parameters and input/ouput data in a standardized way. Check out the following links to get a quick start on the basic concept:
 
