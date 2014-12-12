@@ -41,7 +41,13 @@ eagle.epf
 *.elf
 *.DS_Store
 *.d
+*.eep
+*.lss
+*.map
 
 
 # Other ignores
 .directory
+
+# Python
+*.pyc

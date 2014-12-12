@@ -1,0 +1,2712 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with LaTeX2HTML 2008 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>The CanFestival CANOpen stack manual</TITLE>
+<META NAME="description" CONTENT="The CanFestival CANOpen stack manual">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=iso-8859-15">
+<META NAME="Generator" CONTENT="LaTeX2HTML v2008">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation"><!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev_g.png">   
+<BR>
+<BR>
+<BR></DIV>
+<!--End of Navigation Panel-->
+<DIV ALIGN="CENTER">
+
+</DIV><SPAN  CLASS="textsf"><BIG CLASS="HUGE">The CanFestival CANopen stack manual.</BIG></SPAN>
+
+<P>
+
+ <BR>
+
+<H2><A NAME="SECTION00010000000000000000">
+CanFestival v3.0 Manual</A>
+</H2>
+<!--Table of Contents-->
+
+<UL CLASS="TofC">
+<LI><A NAME="tex2html118"
+  HREF="manual.html#SECTION00020000000000000000">Introduction</A>
+<UL>
+<LI><A NAME="tex2html119"
+  HREF="manual.html#SECTION00021000000000000000">The CanFestival project</A>
+<LI><A NAME="tex2html120"
+  HREF="manual.html#SECTION00022000000000000000">What is CANopen </A>
+</UL>
+<BR>
+<LI><A NAME="tex2html121"
+  HREF="manual.html#SECTION00030000000000000000">CanFestival Features</A>
+<UL>
+<LI><A NAME="tex2html122"
+  HREF="manual.html#SECTION00031000000000000000">Tools </A>
+<LI><A NAME="tex2html123"
+  HREF="manual.html#SECTION00032000000000000000">Multi-Platform</A>
+<LI><A NAME="tex2html124"
+  HREF="manual.html#SECTION00033000000000000000">CANopen standard conformance</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html125"
+  HREF="manual.html#SECTION00040000000000000000">How to start</A>
+<UL>
+<LI><A NAME="tex2html126"
+  HREF="manual.html#SECTION00041000000000000000">Host requirements</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html127"
+  HREF="manual.html#SECTION00050000000000000000">Understanding Canfestival</A>
+<UL>
+<LI><A NAME="tex2html128"
+  HREF="manual.html#SECTION00051000000000000000">CanFestival Project tree layout</A>
+<LI><A NAME="tex2html129"
+  HREF="manual.html#SECTION00052000000000000000">Implement CanFestival in your application</A>
+<LI><A NAME="tex2html130"
+  HREF="manual.html#SECTION00053000000000000000">CanFestival CAN interfaces</A>
+<LI><A NAME="tex2html131"
+  HREF="manual.html#SECTION00054000000000000000">CanFestival event scheduling</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html132"
+  HREF="manual.html#SECTION00060000000000000000">Linux Target</A>
+<UL>
+<LI><A NAME="tex2html133"
+  HREF="manual.html#SECTION00061000000000000000">Linux Compilation and installation</A>
+<LI><A NAME="tex2html134"
+  HREF="manual.html#SECTION00062000000000000000">Testing your CanFestival installation</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html135"
+  HREF="manual.html#SECTION00070000000000000000">Windows Targets</A>
+<UL>
+<LI><A NAME="tex2html136"
+  HREF="manual.html#SECTION00071000000000000000">Object Dictionary Editor GUI installation.</A>
+<LI><A NAME="tex2html137"
+  HREF="manual.html#SECTION00072000000000000000">CYGWIN</A>
+<LI><A NAME="tex2html138"
+  HREF="manual.html#SECTION00073000000000000000">Visual Studio C++</A>
+<LI><A NAME="tex2html139"
+  HREF="manual.html#SECTION00074000000000000000">MSYS</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html140"
+  HREF="manual.html#SECTION00080000000000000000">Motorola HCS12</A>
+<UL>
+<LI><A NAME="tex2html141"
+  HREF="manual.html#SECTION00081000000000000000">Running a HCS12 node</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html142"
+  HREF="manual.html#SECTION00090000000000000000">Example and test program:</A>
+<UL>
+<LI><A NAME="tex2html143"
+  HREF="manual.html#SECTION00091000000000000000">CANOpenShell</A>
+<LI><A NAME="tex2html144"
+  HREF="manual.html#SECTION00092000000000000000">TestMasterSlave</A>
+<LI><A NAME="tex2html145"
+  HREF="manual.html#SECTION00093000000000000000">gene_SYNC_HCS12 :</A>
+<LI><A NAME="tex2html146"
+  HREF="manual.html#SECTION00094000000000000000">kerneltest :</A>
+<LI><A NAME="tex2html147"
+  HREF="manual.html#SECTION00095000000000000000">TestMasterMicroMod </A>
+<LI><A NAME="tex2html148"
+  HREF="manual.html#SECTION00096000000000000000">TestMasterSlaveLSS</A>
+<LI><A NAME="tex2html149"
+  HREF="manual.html#SECTION00097000000000000000">FastScan</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html150"
+  HREF="manual.html#SECTION000100000000000000000">Developing a new node</A>
+<UL>
+<LI><A NAME="tex2html151"
+  HREF="manual.html#SECTION000101000000000000000">Using Dictionary Editor GUI</A>
+<LI><A NAME="tex2html152"
+  HREF="manual.html#SECTION000102000000000000000">Generating the object Dictionary</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html153"
+  HREF="manual.html#SECTION000110000000000000000">FAQ</A>
+<UL>
+<LI><A NAME="tex2html154"
+  HREF="manual.html#SECTION000111000000000000000">General</A>
+<LI><A NAME="tex2html155"
+  HREF="manual.html#SECTION000112000000000000000">LINUX</A>
+<LI><A NAME="tex2html156"
+  HREF="manual.html#SECTION000113000000000000000">Win32</A>
+<LI><A NAME="tex2html157"
+  HREF="manual.html#SECTION000114000000000000000">HCS12</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html158"
+  HREF="manual.html#SECTION000120000000000000000">Documentation resources</A>
+<UL>
+<LI><A NAME="tex2html159"
+  HREF="manual.html#SECTION000121000000000000000">CIA : Can in Automation </A>
+<LI><A NAME="tex2html160"
+  HREF="manual.html#SECTION000122000000000000000">Resources and training in CANopen </A>
+<LI><A NAME="tex2html161"
+  HREF="manual.html#SECTION000123000000000000000">Elektronikladen HCS12 T -board </A>
+<LI><A NAME="tex2html162"
+  HREF="manual.html#SECTION000124000000000000000">Gnu gcc compiler for HC12 </A>
+<LI><A NAME="tex2html163"
+  HREF="manual.html#SECTION000125000000000000000">Motorola documentation on HC12 </A>
+<LI><A NAME="tex2html164"
+  HREF="manual.html#SECTION000126000000000000000">Lauterbach debugger for HC12 </A>
+<LI><A NAME="tex2html165"
+  HREF="manual.html#SECTION000127000000000000000">Python language </A>
+</UL>
+<BR>
+<LI><A NAME="tex2html166"
+  HREF="manual.html#SECTION000130000000000000000">About the project</A>
+<UL>
+<LI><A NAME="tex2html167"
+  HREF="manual.html#SECTION000131000000000000000">Contributors </A>
+<LI><A NAME="tex2html168"
+  HREF="manual.html#SECTION000132000000000000000">Getting support</A>
+<LI><A NAME="tex2html169"
+  HREF="manual.html#SECTION000133000000000000000">Contributing</A>
+<LI><A NAME="tex2html170"
+  HREF="manual.html#SECTION000134000000000000000">License</A>
+</UL></UL>
+<!--End of Table of Contents-->
+
+<P>
+
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Introduction</A>
+</H1>
+
+<P>
+CanFestival is an OpenSource (LGPL and GPL) CANopen framework.
+
+<P>
+
+<H2><A NAME="SECTION00021000000000000000">
+The CanFestival project</A>
+</H2>
+
+<P>
+This project, initiated by Edouard TISSERANT in 2001, has grown thanks
+to Francis DUPIN and other contributors.
+
+<P>
+Today, CanFestival focuses on providing an ANSI-C platform independent
+CANopen stack that can be implemented as master or slave nodes on
+PCs, Real-time IPCs, and Microcontrollers.
+
+<P>
+
+<H2><A NAME="SECTION00022000000000000000">
+What is CANopen </A>
+</H2>
+
+<P>
+CANopen is a CAN based high level protocol. It defines some protocols
+to :
+
+<P>
+
+<OL>
+<LI>Configure a CAN network. 
+</LI>
+<LI>Transmit data to a specific node or in broadcast. 
+</LI>
+<LI>Administrate the network. For example detecting a not responding node. 
+</LI>
+</OL>
+The documentation can be found on the CAN in Automation website :
+
+<P>
+http://www.can-cia.de/canopenhttp://www.can-cia.de/canopen
+
+<P>
+The most important document about CANopen is the normative CiA Draft
+Standard 301, version 4.02. You can now download the specification
+from the CAN in Automation website at no cost.
+
+<P>
+To continue reading this document, let us assume that you have read
+some papers introducing CANopen .
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+CanFestival Features</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00031000000000000000">
+Tools </A>
+</H2>
+
+<P>
+The CANopen library is coming with some tools :
+
+<P>
+
+<OL>
+<LI>Object Dictionary editor GUI. WxPython Model-View-Controler based
+GUI, that helps a lot in generating object dictionary source code for
+each node. 
+</LI>
+<LI>A configure script, that let you chose compile time options such as
+target CPU/HOST, CAN and TIMER drivers.
+<BR>
+This script has not been generated with autoconf, it has been made
+keeping micro-controller target in mind. 
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+Multi-Platform</A>
+</H2>
+
+<P>
+
+<OL>
+<LI>Library source code is C-ANSI. 
+</LI>
+<LI>Driver and examples coding conventions merely depend on target specific
+contributor/compiler. 
+</LI>
+<LI>Unix compatible interfaces and examples should compile and run on
+any Unix system (tested on GNU/Linux and GNU/FreeBSD). 
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+CANopen standard conformance</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00033100000000000000">
+DS-301</A>
+</H3>
+
+<P>
+Supported features should conform to DS301. V.4.02 13 february 2002. 
+
+<P>
+
+<OL>
+<LI>NMT master and slave
+</LI>
+<LI>Heartbeat consumer and producer
+</LI>
+<LI>NodeGuard slave reponder and basic master without tracking
+</LI>
+<LI>SYNC service
+</LI>
+<LI>SDO multiples client and server, segmented and expedited
+</LI>
+<LI>PDO : TPDO and RPDO, with respect to transmission type
+</LI>
+<LI>PDO mapping from/to OD variables bit per bit. 
+</LI>
+<LI>EMCY : Send and receive and keeps track of emergency objects
+</LI>
+<LI>Data types : 8 to 64 bits values, fixed length strings.
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00033200000000000000">
+DS-302</A>
+</H3>
+
+<P>
+Only concise DFC is supported.
+
+<P>
+
+<H3><A NAME="SECTION00033300000000000000">
+DS-305</A>
+</H3>
+
+<P>
+LSS services are fully supported although they have to be enabled at compile time. Additionally, FastScan LSS service is also optionally enabled. 
+
+<P>
+
+<H1><A NAME="SECTION00040000000000000000">
+How to start</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00041000000000000000">
+Host requirements</A>
+</H2>
+
+<P>
+What you need on your development workstation.
+
+<P>
+
+<H3><A NAME="SECTION00041100000000000000">
+Object Dictionary Editor GUI</A>
+</H3>
+
+<P>
+
+<OL>
+<LI>Python, with 
+</LI>
+<LI>wxPython modules installed (at least version 2.6.3).
+</LI>
+<LI>Gnosis xml tools. (Optional can also be installed locally to the project
+automatically with the help of a Makefile. Please see ``Using Dictionary
+Editor GUI'' ) 
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00041200000000000000">
+Linux and Unix-likes</A>
+</H3>
+
+<P>
+
+<OL>
+<LI>Linux, FreeBSD, Cygwin or any Unix environment with GNU toolchain. 
+</LI>
+<LI>The GNU C compiler (gcc) or any other ANSI-C compiler for your target
+platform. 
+</LI>
+<LI>Xpdf, and the official 301_v04000201.pdf file in order to get GUI
+context sensitive help. 
+</LI>
+<LI>GNU Make 
+</LI>
+<LI>Bash and sed 
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00041300000000000000">
+Windows (for native win32 target)</A>
+</H3>
+
+<P>
+
+<OL>
+<LI>Visual Studio Express 2005 or worst.
+</LI>
+<LI>Microsoft platform SDK (requires Genuine Advantage)
+</LI>
+<LI>Cygwin (for configuration only)
+</LI>
+<LI>MinGW/MSYS
+</LI>
+</OL>
+
+<P>
+
+<H1><A NAME="SECTION00050000000000000000">
+Understanding Canfestival</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00051000000000000000">
+CanFestival Project tree layout</A>
+</H2>
+Simplified directory structure.
+<PRE>
+./src ANSI-C source of \canopen stack
+./include Exportables Header files
+./drivers Interfaces to specific platforms/HW
+./drivers/unix Linux and Cygwin OS interface
+./drivers/win32 Native Win32 OS interface
+./drivers/timers_xeno Xenomai timers/threads (Linux only)
+./drivers/timers_rtai Rtai timers/threads (Linux only)
+./drivers/timers_kernel Linux kernel timer/threads
+./drivers/timers_unix Posix timers/threads (Linux, Cygwin)
+./drivers/can_virtual_kernel Fake CAN network (kernel space)
+./drivers/can_serial Serial point to point and PTY hub (*nix only)
+./drivers/can_peak_linux PeakSystem CAN library interface
+./drivers/can_peak_win32 PeakSystem PCAN-Light interface
+./drivers/can_uvccm_win32 Acacetus's RS232 CAN-uVCCM interface
+./drivers/can_virtual Fake CAN network (Linux, Cygwin)
+./drivers/can_vcom VScom VSCAN interface
+./drivers/hcs12 HCS12 full target interface
+./examples Examples
+./examples/TestMasterSlave 2 nodes, NMT SYNC SDO PDO, win32+unix
+./examples/TestMasterSlaveLSS 3 nodes, NMT SYNC SDO PDO LSS, win32+unix
+./examples/TestMasterMicroMod 1 node, control Peak I/O Module, unix
+./examples/gene_SYNC_HCS12 Just send periodic SYNC on HCS12
+./examples/win32test Ask some DS301 infos to a node (win32)
+./objdictgen Object Dictionary editor GUI
+./objdictgen/config Pre-defined OD profiles
+./objdictgen/examples Some examples/test OD
+./doc Documentation source
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00052000000000000000">
+Implement CanFestival in your application</A>
+</H2>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="1017" HEIGHT="719" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000003F9000002CF880931E7.png"
+ ALT="Image 10000201000003F9000002CF880931E7"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<P><P>
+<BR>
+
+
+<P>
+
+<H2><A NAME="SECTION00053000000000000000">
+CanFestival CAN interfaces</A>
+</H2>
+
+<P>
+Because most CAN controllers and drivers implement FIFOs, CanFestival
+consider sending message as a non blocking operation.
+
+<P>
+In order to prevent reentrant calls to the stack, messages reception
+is implemented differently on &#181;C and OS.:
+
+<P>
+
+<OL>
+<LI>&#181;C must provide interruption masking, mutually excluding timer and CAN receive interrupts.
+<BR><P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="970" HEIGHT="358" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000003CA0000016604E6A5EF.png"
+ ALT="Image 10000201000003CA0000016604E6A5EF"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+</LI>
+<LI>OS must provide a receive thread, a timer thread and a mutex. CAN
+reception should be a blocking operation.
+<BR><P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="1017" HEIGHT="719" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000003F9000002CF8B0CDAEA.png"
+ ALT="Image 10000201000003F9000002CF8B0CDAEA"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00054000000000000000">
+CanFestival event scheduling</A>
+</H2>
+
+<P>
+A CANopen node must be able to take delayed actions.
+
+<P>
+For instance, periodic sync emission, heartbeat production or SDO timeout
+need to set some alarms that will be called later and do the job.
+
+<P>
+&#181;C generally do not have enough free timers to handle all
+the CANopen needs directly. Moreover, CanFestival internal data
+may be corrupt by reentrant calls.
+
+<P>
+CanFestival implement a micro -scheduler (timer.c). It uses only one
+timer to mimic many timers. It manage an alarm table, and call alarms
+at desired time.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="556" HEIGHT="222" ALIGN="BOTTOM" BORDER="0"
+ SRC="./100000000000022C000000DEDAD2140C.png"
+ ALT="Image 100000000000022C000000DEDAD2140C"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+Scheduler can handle short clock value ranges limitation found on
+some &#181;C. As an example, value range for a 16bit clock counter
+with 4&#181;s tick is crossed within 0.26 seconds... Long alarms
+must be segmented.
+
+<P>
+Chronogram illustrate a long alarm (A) and a short periodic alarm
+(B), with a A value &gt; clock range &gt;
+B value. Values t0...t8 are successive setTimer call parameter values.
+t1 illustrates an intermediate call to TimeDispatch, caused by a delay
+longer than clock range. Because of long alarm segmentation, at the
+end of t1, TimeDispatch call will not trig any alarm callback.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="918" HEIGHT="255" ALIGN="BOTTOM" BORDER="0"
+ SRC="./1000000000000396000000FFC42573DA.png"
+ ALT="Image 1000000000000396000000FFC42573DA"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H1><A NAME="SECTION00060000000000000000">
+Linux Target</A>
+</H1>
+
+<P>
+Linux target is default configure target.
+
+<P>
+
+<H2><A NAME="SECTION00061000000000000000">
+Linux Compilation and installation</A>
+</H2>
+
+<P>
+Call ./configure - help to see all available compile time options.
+
+<P>
+After invoking ./configure with your platform specific switches, just
+type make.
+
+<P>
+<PRE>
+	./configure [options]
+	make
+	make install
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00061100000000000000">
+Standard Linux node</A>
+</H3>
+
+<P>
+<PRE>
+	./configure --timers=unix
+</PRE>
+
+<P>
+To do a CANopen node running on PC -Linux, you need :
+
+<P>
+
+<OL>
+<LI>A working linux distribution 
+</LI>
+<LI>One or more Peak system PC CAN interface and the last Peak Linux driver
+installed. 
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00061200000000000000">
+Real -Time Linux node</A>
+</H3>
+
+<P>
+With Xenomai :
+<PRE>
+	./configure --timers=xeno
+</PRE>
+With Rtai :
+<PRE>
+	./configure --timers=rtai
+</PRE>
+
+<P>
+To do a CANopen node running on PC -Linux, you need :
+
+<P>
+
+<OL>
+<LI>A working Linux distribution patched with XENOMAI (2.1 or greater) or RTAI (3.6). 
+</LI>
+<LI>One or more Peak system PC CAN interface and the last Peak Real Time
+Linux driver installed. 
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00061300000000000000">
+Linux kernel node</A>
+</H3>
+
+<P>
+To do a CANopen node running on PC-Linux in kernel space, you need:
+
+<P>
+
+<OL>
+<LI>A working Linux distribution with pre-built 2.6.x.x kernel sources
+</LI>
+<LI>A CAN card driver compatible with CanFestival
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00061400000000000000">
+CAN devices</A>
+</H3>
+Currently supported CAN devices and corresponding configure switch:
+
+<P>
+
+<H4><A NAME="SECTION00061410000000000000">
+Peak systems</A>
+</H4>
+<PRE>
+	./configure --can=peak_linux
+</PRE>
+PeakSystems CAN interface is automatically chosen as default CAN interface
+if libpcan is present in the system.
+
+<P>
+Please download driver at http://www.peak-system.com/linuxhttp://www.peak
+-system.com/linux and follow instructions in order to install driver
+on your system.
+
+<P>
+
+<H4><A NAME="SECTION00061420000000000000">
+Socket-Can (http://socketcan.berlios.de)</A>
+</H4>
+<PRE>
+	./configure --can=socket
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00061430000000000000">
+Serial</A>
+</H4>
+<PRE>
+	./configure --can=serial
+</PRE>
+The CAN serial driver implements a 1:1 serial connection between 2 CAN devices.
+For example, you can connect 2 CANFestival applications via a NULL modem cable.
+
+<P>
+Also with this driver comes a software hub, for up to 16 CANFestival apps to 
+be connected on a single PC, with an optional connection to another CAN driver.
+Note that only the serial driver is supported at this time.  The hub uses ptys 
+(pseudo ttys) available on a *nix like system.
+
+<P>
+
+<H4><A NAME="SECTION00061440000000000000">
+LinCan</A>
+</H4>
+<PRE>
+	./configure --can=lincan
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00061450000000000000">
+Virtual CAN interfaces (for test/debug)</A>
+</H4>
+<PRE>
+	./configure --can=virtual
+		or, for kernel space:
+	./configure --can=kernel_virtual
+</PRE>
+Virtual CAN interface use Unix pipes to emulate a virtual CAN network.
+Each message issued from a node is repeat to all other nodes. Currently
+only works with nodes running in the same process, and does not support
+work with Xenomai or RTAI.
+
+<P>
+
+<H4><A NAME="SECTION00061460000000000000">
+VScom</A>
+</H4>
+<PRE>
+	./configure --can=vscom
+</PRE>
+The VSCAN API archive will be automatically downloaded and decompressed (unzip required). See http://www.vscom.de/1_1_05.htmwww.vscom.de for available adapters.
+
+<P>
+
+<H3><A NAME="SECTION00061500000000000000">
+LSS services</A>
+</H3>
+Canfestival optionally supports LSS services but they must be enabled.
+<PRE>
+	./configure --enable-lss
+</PRE>
+
+<P>
+Additionally, the FastScan LSS service can also be enabled.
+<PRE>
+	./configure --enable-lss --enable-lss-fs
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00062000000000000000">
+Testing your CanFestival installation</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00062100000000000000">
+User space</A>
+</H3>
+
+<P>
+Sample provided in /example/TestMasterSlave is installed into your
+system during installation.
+
+<P>
+<PRE>
+	TestMasterSlave
+</PRE>
+
+<P>
+Default CAN driver library is libcanfestival_can_virtual.so., which
+will simply pass CAN messages through Unix pipes between Master and
+Slave.
+
+<P>
+You may also want to specify different can interface and define some
+CAN ports. Another example using Peaks dual PCMCIA
+(configure and install with -can=peak) :
+
+<P>
+<PRE>
+	TestMasterSlave -l libcanfestival_can_peak.so -s 40 -m 41
+</PRE>
+
+<P>
+If the LSS services are enabled the sample provided in /example/TestMasterSlaveLSS will be also installed. It behaves the same as TestMasterSlave except that there are 2 slave nodes without a valid nodeID so the the initializations is done via  the LSS services. If FastScan optional service is enabled the example will use it. 
+
+<P>
+
+<H3><A NAME="SECTION00062200000000000000">
+Kernel space</A>
+</H3>
+
+<P>
+<PRE>
+	example/kerneltest
+</PRE>
+
+<P>
+It's based on TestMasterSlave example
+and has the same functionality. Uses virtual can driver as default
+too. After successful installation you can insert the module by typing:
+modprobe canf_ktest Module control is done by simple console 'canf_ktest_console'
+which is used to start/stop sending data.
+
+<P>
+
+<H1><A NAME="SECTION00070000000000000000">
+Windows Targets</A>
+</H1>
+
+<P>
+CanFestival can be compiled and run on Windows platform. It is possible
+to use both Cygwin and win32 native runtime environment.
+
+<P>
+
+<H2><A NAME="SECTION00071000000000000000">
+Object Dictionary Editor GUI installation.</A>
+</H2>
+
+<P>
+Please refer to a821UsingDictionaryEditorGUIoutline8.2.1)Using
+Dictionary Editor GUI
+
+<P>
+
+<H2><A NAME="SECTION00072000000000000000">
+CYGWIN</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00072100000000000000">
+Requirements</A>
+</H3>
+
+<P>
+Cygwin have to be installed with those packages :
+
+<P>
+
+<OL>
+<LI>gcc 
+</LI>
+<LI>unzip 
+</LI>
+<LI>wget 
+</LI>
+<LI>make 
+</LI>
+</OL>
+Currently, the only supported CAN devices are PeakSystems ones, with
+PcanLight driver and library.
+
+<P>
+Please download driver at http://www.peak-system.com/themen/download_gb.htmlhttp://www.peak
+-system.com/themen/download_gb.html  - follow instructions
+in order to install driver on your system.
+
+<P>
+Install Cygwin as required, and the driver for your Peak CAN device.
+
+<P>
+Open a Cygwin terminal, and follow those instructions:
+
+<P>
+
+<H3><A NAME="SECTION00072200000000000000">
+Cygwin configuration and compilation</A>
+</H3>
+
+<P>
+
+<H4><A NAME="SECTION00072210000000000000">
+A single node with PcanLight and Peak CAN -USB adapter</A>
+</H4>
+
+<P>
+Download the PCAN-Light Zip file for your HW ( URL from download
+page ):
+
+<P>
+<PRE>
+	wget http://www.peak -system.com/files/usb.zip
+</PRE>
+
+<P>
+Extract its content into your cygwin home (it will create a ``Disk''
+directory):
+
+<P>
+<PRE>
+	unzip usb.zip
+</PRE>
+
+<P>
+Configure CanFestival3 providing path to the desired PcanLight implementation:
+
+<P>
+<PRE>
+	cd CanFestival -3
+	export PCAN_INCLUDE=~/Disk/PCAN-Light/Api/
+	export PCAN_HEADER=Pcan_usb.h
+	export PCAN_LIB=~/Disk/PCAN-Light/Lib/Visual\ C++/Pcan_usb.lib
+	./configure --can=peak_win32
+	make
+</PRE>
+
+<P>
+In order to test, you have to use another CanFestival node, connect
+with a CAN cable.
+
+<P>
+<PRE>
+	cp ~/Disk/PCAN-Light/Pcan_usb.dll .
+	./examples/TestMasterSlave/TestMasterSlave \
+	-l drivers/can\_peak\_win32/cygcan\_peak\_win32.dll \
+	-S 500K -M none
+</PRE>
+
+<P>
+Then, on the other node :
+
+<P>
+<PRE>
+	./TestMasterSlave -l my_driver.so -S none -M 500K
+</PRE>
+
+<P>
+Now messages are being exchanged between master and slave node.
+
+<P>
+
+<H4><A NAME="SECTION00072220000000000000">
+Two nodes with PcanLight and Peak dual PCMCIA -CAN adapter</A>
+</H4>
+
+<P>
+Download the PCAN-Light Zip file for your HW ( URL from download
+page ):
+
+<P>
+<PRE>
+	wget http://www.peak-system.com/files/pccard.zip
+</PRE>
+
+<P>
+Extract its content into your cygwin home (it will create a ``Disk''
+directory):
+
+<P>
+<PRE>
+	unzip pccard.zip
+</PRE>
+
+<P>
+The configure CanFestival3 providing path to the desired PcanLight
+implementation:
+
+<P>
+<PRE>
+	export PCAN_INCLUDE=~/Disk/PCAN-Light/Api/
+	export PCAN_HEADER=Pcan_pcc.h
+	export PCAN_LIB=~/Disk/PCAN-Light/Lib/Visual\ C++/Pcan_pcc.lib
+	export PCAN2_HEADER=Pcan_2pcc.h
+	export PCAN2_LIB=~/Disk/PCAN-Light/Lib/Visual\ C++/Pcan_2pcc.lib
+</PRE>
+
+<P>
+In order to test, just connect together both CAN ports of the PCMCIA
+card. Dont forget 120ohms terminator.
+
+<P>
+<PRE>
+	cp ~/Disk/PCAN-Light/Pcan_pcc.dll .
+	cp ~/Disk/PCAN-Light/Pcan_2pcc.dll .
+	./examples/TestMasterSlave/TestMasterSlave \
+	   -l drivers/can_peak_win32/cygcan_peak_win32.dll
+</PRE>
+
+<P>
+Messages are then exchanged between master and slave node, both inside
+TestMasterSlaves process.
+
+<P>
+
+<H2><A NAME="SECTION00073000000000000000">
+Visual Studio C++</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00073100000000000000">
+Requirements</A>
+</H3>
+
+<P>
+Minimal Cygwin installation is required at configuration time in order
+to create specific header files (config.h and cancfg.h). Once this
+files created, cygwin is not necessary any more.
+
+<P>
+Project and solution files have been created and tested with Visual
+Studio Express 2005. Be sure to have installed Microsoft Platform
+SDK, as recommended at the end of Visual Studio installation.
+
+<P>
+
+<H3><A NAME="SECTION00073200000000000000">
+Configuration with cygwin</A>
+</H3>
+
+<P>
+Follow instructions given at Cygwin configuration and compilationCygwin
+configuration and compilation, but do neither call make nor do tests,
+just do configuration steps. This will create headers files accordingly
+to your configuration parameters, and the desired CAN hardware.
+
+<P>
+
+<H3><A NAME="SECTION00073300000000000000">
+Compilation with Visual Studio</A>
+</H3>
+
+<P>
+You can either load independent ``*.vcproj'' project files
+along your own projects in your own solution or load the provided
+``CanFestival -3.vc8.sln'' solution files directly.
+
+<P>
+Build CanFestival -3 project first.
+
+<P>
+
+<H4><A NAME="SECTION00073310000000000000">
+PcanLight and the can_peak_win32 project.</A>
+</H4>
+
+<P>
+Chosen Pcan_xxx.lib and eventually Pcan_2xxx.lib files must be added
+to can_peak_win32 
+<BR>
+project before build of the DLL.
+
+<P>
+
+<H3><A NAME="SECTION00073400000000000000">
+Testing</A>
+</H3>
+
+<P>
+Copy eventually needed dlls (ie : Pcan_Nxxx.lib) into Release or
+Debug directory, and run the test program:
+
+<P>
+<PRE>
+	TestMasterSlave.exe -l can_peak_win32.dll
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00074000000000000000">
+MSYS</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00074100000000000000">
+Requirements</A>
+</H3>
+
+<P>
+Download from : http://sourceforge.net/project/showfiles.php?group_id=2435
+
+<P>
+
+<OL>
+<LI>MSYS-1.0.10.exe 
+</LI>
+<LI>MinGW-5.1.3.exe 
+</LI>
+<LI>mingwPORT (which contains wget-1.9.1) 
+</LI>
+</OL>
+Please download driver at http://www.peak-system.com/themen/download_gb.html
+and follow instructions in order to install driver on your system.
+Install MSYS and MingW as required, and the driver for your Peak CAN
+device. Open a MSYS terminal, and follow those instructions:
+<BR><P>
+
+<UL>
+<LI>extract wget-1.9.1-mingwPORT.tar.bz2 
+</LI>
+<LI>copy wget.exe in c:&#92; msys&#92; 1.0&#92;
+bin&#92; 
+</LI>
+<LI>start MSYS and check the file /etc/fstab contain the line c:/MinGW
+/mingw 
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00074200000000000000">
+MSYS configuration and compilation</A>
+</H3>
+
+<P>
+Instructions for compilation are nearly the same as CYGWIN part.
+
+<P>
+
+<H4><A NAME="SECTION00074210000000000000">
+A single node with PcanLight and Peak CAN-USB adapter</A>
+</H4>
+
+<P>
+Download the PCAN-Light Zip file for your HW ( URL from download page
+):
+
+<P>
+<PRE>
+	wget http://www.peak-system.com/files/usb.zip
+</PRE>
+
+<P>
+Extract its content into your MSYS's home (it will create a &#34;
+Disk&#34; directory):
+
+<P>
+<PRE>
+	unzip usb.zip
+</PRE>
+
+<P>
+Configure CanFestival3 providing path to the desired PcanLight implementation:
+
+<P>
+<PRE>
+	cd CanFestival-3
+	export PCAN_INCLUDE=~/Disk/PCAN-Light/Api/
+	export PCAN_HEADER=Pcan_usb.h
+	export PCAN_LIB=~/Disk/PCAN-Light/Lib/Visual\ C++/Pcan_usb.lib
+	./configure --can=peak_win32
+	make
+</PRE>
+
+<P>
+In order to test, you have to use another CanFestival node, connect
+with a CAN cable.
+
+<P>
+<PRE>
+	cp ~/Disk/PCAN-Light/Pcan_usb.dll .
+	./examples/TestMasterSlave/TestMasterSlave \
+	  -l drivers/can_peak_win32/cygcan_peak_win32.dll \
+	  -S 500K -M none
+</PRE>
+
+<P>
+Then, on the other node :
+
+<P>
+<PRE>
+	./TestMasterSlave -l my_driver.so -S none -M 500K -m 0
+</PRE>
+Now messages are being exchanged between master and slave node.
+
+<P>
+
+<H4><A NAME="SECTION00074220000000000000">
+Two nodes with PcanLight and Peak dual PCMCIA-CAN adapter</A>
+</H4>
+
+<P>
+Download the PCAN-Light Zip file for your HW ( URL from download page
+):
+
+<P>
+<PRE>
+	wget http://www.peak-system.com/files/pccard.zip
+</PRE>
+Extract its content into your MSYS's home (it will create a &#34;
+Disk&#34; directory):
+
+<P>
+<PRE>
+	unzip pccard.zip
+</PRE>
+The configure CanFestival3 providing path to the desired PcanLight
+implementation:
+
+<P>
+<PRE>
+	export PCAN_INCLUDE=~/Disk/PCAN-Light/Api/
+	export PCAN_HEADER=Pcan_pcc.h}
+	export PCAN_LIB=~/Disk/PCAN-Light/Lib/Visual\ C++/Pcan_pcc.lib
+	export PCAN2_HEADER=Pcan_2pcc.h
+	export PCAN2_LIB=~/Disk/PCAN-Light/Lib/Visual\ C++/Pcan_2pcc.lib
+</PRE>
+
+<P>
+In order to test, just connect together both CAN ports of the PCMCIA
+card. Don't forget 120ohms terminator.
+
+<P>
+<PRE>
+	cp~/Disk/PCAN-Light/Pcan_pcc.dll ~.
+	cp ~/Disk/PCAN-Light/Pcan_2pcc.dll ~.
+	./examples/TestMasterSlave/TestMasterSlave \
+		-l drivers/can\_peak\_win32/cygcan\_peak\_win32.dll -m 0 -s 1
+</PRE>
+Messages are then exchanged between master and slave node, both inside
+TestMasterSlave's process.
+
+<P>
+
+<H1><A NAME="SECTION00080000000000000000">
+Motorola HCS12</A>
+</H1>
+
+<P>
+The examples have been tested on a MC9S12DG255 mounted on a Elektronikladen
+HCS12 T -board.
+
+<P>
+Beware that there are few differences in the MSCAN module of the 68HC12
+and HCS12 microcontroller. For a HC12, you must adapt the driver that
+we provide for HCS12.
+
+<P>
+For the difference MSCAN HC12/HCS12, see the Motorola application
+note AN2011/D.
+
+<P>
+Configure switch:
+
+<P>
+<PRE>
+	--target=hcs12
+</PRE>
+
+<P>
+To do a CANopen node running on a microncontroller Motorola MC9S12DP256,
+you need :
+
+<P>
+
+<OL>
+<LI>The compiler GNU gcc for HC11, HC12, HCS12 : m6811 -elf. 
+<BR>
+Download the <SPAN  CLASS="textbf">release 3.1</SPAN> at : http://m68hc11.serveftp.org/m68hc11_pkg_rpm.phphttp://m68hc11.serveftp.org/m68hc11_pkg_rpm.php 
+</LI>
+<LI>A board with this chip. We are using the T -board from Electronikladen. 
+</LI>
+<LI>At least about 40 kBytes of program memory. 
+</LI>
+<LI>A tool to flash the memory. (We are using the high cost Lauterbach
+debugger). 
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00081000000000000000">
+Running a HCS12 node</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00081100000000000000">
+Compiling Canfestival:</A>
+</H3>
+
+<P>
+<PRE>
+	./configure --target=hcs12
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00081200000000000000">
+Compiling and building an example</A>
+</H3>
+
+<P>
+Enter in the folder of an HCS12 example,
+
+<P>
+<PRE>
+	make all
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00081300000000000000">
+Flashing the memory :</A>
+</H3>
+
+<P>
+Use your preferred loader ! If you are using a debugger Lauterbach,
+you can load the bash file : trace32_flash_programmer.cmm. It loads
+directly the elf file.
+
+<P>
+
+<H3><A NAME="SECTION00081400000000000000">
+Connecting to a serial RS232 console :</A>
+</H3>
+
+<P>
+Connect the portS(TxD0) of the HCS12 to a console configured at 19200
+bauds 8N1, via a Max232 chip to adapt the electrical levels. On Linux,
+you can use minicom. Connecting to a console is useful to read the
+messages, but not required.
+
+<P>
+
+<H3><A NAME="SECTION00081500000000000000">
+Connecting to the CAN network :</A>
+</H3>
+
+<P>
+Connect the port CAN0 (pin PM0, PM1) to the network via a CAN controller.
+On our board, the CAN controller is a PCA82C250 chip.
+
+<P>
+
+<H3><A NAME="SECTION00081600000000000000">
+starting the node :</A>
+</H3>
+
+<P>
+Press the reset of your HCS12 board.
+
+<P>
+
+<H1><A NAME="SECTION00090000000000000000">
+Example and test program:</A>
+</H1>
+
+<P>
+The ``examples'' directory contains some test program you can
+use as example for your own developments.
+
+<P>
+
+<H2><A NAME="SECTION00091000000000000000">
+CANOpenShell</A>
+</H2>
+
+<P>
+This example provides a node that can execute some user commands through stdin. 
+
+<P>
+With this example you can:
+
+<OL>
+<LI>scan network (reset all nodes and display node's bootup message)
+</LI>
+<LI>start / stop /reset a remote node
+</LI>
+<LI>get informations about a remote node
+</LI>
+<LI>read / write a specific entry of a remote node
+</LI>
+</OL>
+
+<P>
+The node can be started as a master node or a slave node. The only difference is 
+that when is started as a master, all nodes on the network are reseted.
+
+<P>
+The first command must be the "load" command.
+
+<P>
+<PRE>
+	****************************************************************************
+	*  CANOpenShell                                                            *
+	*                                                                          *
+  	*   MANDATORY COMMAND (must be the first command)                          *
+	*     load#CanLibraryPath,channel,baudrate,nodeid,type (0:slave, 1:master) *
+	*                                                                          *
+	*   NETWORK: (if nodeid=0x00 : broadcast)                                  *
+	*     ssta#nodeid : Start a node                                           *
+	*     ssto#nodeid : Stop a node                                            *
+	*     srst#nodeid : Reset a node                                           *
+	*     scan : Reset all nodes and print message when bootup                 *
+	*     wait#seconds : Sleep for n seconds                                   *
+	*                                                                          *
+	*   SDO: (size in bytes)                                                   *
+	*     info#nodeid                                                          *
+	*     rsdo#nodeid,index,subindex : read sdo                                *
+	*        ex : rsdo#42,1018,01                                              *
+	*     wsdo#nodeid,index,subindex,size,data : write sdo                     *
+	*        ex : wsdo#42,6200,01,01,FF                                        *
+	*                                                                          *
+	*   Note: All numbers are hex                                              *
+	*                                                                          *
+	*     help : Display this menu                                             *
+	*     quit : Quit application                                              *
+	****************************************************************************
+</PRE>
+
+<P>
+Minimal launch command :
+<PRE>
+	./CANOpenShell load#libcanfestival_can_peak_linux.so,32,125K,8,0
+</PRE>
+This command start the node as a slave with nodeid 8 at 125K on channel 32.
+
+<P>
+Advanced launch command :
+<PRE>
+	./CANOpenShell load#libcanfestival_can_peak_linux.so,32,125K,8,1 \
+	 help \
+	 wait#5 \
+	 wsdo#42,6200,01,01,FF
+</PRE>
+This command starts the node as a master with nodeid 8 at 125K on channel 32, 
+displays help menu, wait 5 seconds for node's NMT bootup, 
+and write FF value at index 6200, subindex 01 to the remote node with id 42.
+
+<P>
+
+<H2><A NAME="SECTION00092000000000000000">
+TestMasterSlave</A>
+</H2>
+
+<P>
+<PRE>
+  **************************************************************
+  *  TestMasterSlave                                           *
+  *                                                            *
+  *  A simple example for PC. It does implement 2 CanOpen      *
+  *  nodes in the same process. A master and a slave. Both     *
+  *  communicate together, exchanging periodically NMT, SYNC,  *
+  *  SDO and PDO. Master configure heartbeat producer time     *
+  *  at 1000 ms for slave node-id 0x02 by concise DCF.         *                                  
+  *                                                            *
+  *   Usage:                                                   *
+  *   ./TestMasterSlave  [OPTIONS]                             *
+  *                                                            *
+  *   OPTIONS:                                                 *
+  *     -l : Can library ["libcanfestival_can_virtual.so"]     *
+  *                                                            *
+  *    Slave:                                                  *
+  *     -s : bus name ["0"]                                    *
+  *     -S : 1M,500K,250K,125K,100K,50K,20K,10K,none(disable)  *
+  *                                                            *
+  *    Master:                                                 *
+  *     -m : bus name ["1"]                                    *
+  *     -M : 1M,500K,250K,125K,100K,50K,20K,10K,none(disable)  *
+  *                                                            *
+  **************************************************************
+</PRE>
+
+<P>
+Notes aboute use of concise DCF :
+
+<P>
+In this example, Master configure heartbeat producer time
+at 1000 ms for slave node -id 0x02 by concise DCF according DS -302
+profile.
+
+<P>
+Index 0x1F22, sub-index 0x00 of the master OD, correspond
+to the number of entries. This equal to the maximum possible nodeId
+(127). Each sub -index points to the Node -ID of the device, to which
+the configuration belongs.
+
+<P>
+To add more parameters configurations to the slave, the value
+at sub -index 0x02 must be a binary stream (little -endian) following
+this structure :
+
+<P>
+<PRE>
+	 (UNS32) nb of entries
+	 (UNS16) index parameter 1
+	 (UNS8) sub -index parameter 1
+	 (UNS32) size data parameter 1
+	 (DOMAIN) data parameter 1
+	 (UNS16) index parameter 2
+	 (UNS8) sub -index parameter 2
+	 (UNS32) size data parameter 2
+	 (DOMAIN) data parameter 2
+	      ....
+	 (UNS16) index parameter n
+	 (UNS8) sub -index parameter n
+	 (UNS32) size data parameter n
+	 (DOMAIN) data parameter n
+</PRE>
+
+<P>
+So the binary value stream to configure heartbeat producer
+time must be :
+
+<P>
+<PRE>
+	0100000017100002000000e803
+</PRE>
+
+<P>
+The slave node is configured just before the Master entering
+in Pre_operational state.
+
+<P>
+
+<H2><A NAME="SECTION00093000000000000000">
+gene_SYNC_HCS12 :</A>
+</H2>
+
+<P>
+This is a simple CANopen node that only send cyclic SYNC message.
+It demonstrate implementation on HCS12 based board.
+
+<P>
+
+<P><P>
+<BR>
+
+
+<P>
+
+<H2><A NAME="SECTION00094000000000000000">
+kerneltest :</A>
+</H2>
+
+<P>
+Example based on TestMasterSlave slightly modified to suit kernel
+space requisites. It will do the same as TestMasterSlave but in kernel
+space sending kernel messages (displayed by dmesg for example). It
+is designed as external kernel module implemented as character device.
+There is a shell script called 'insert.sh', which will insert the
+module and create a new device file /dev/canf_ktest (used to sending
+commands to module). To actual sending commands you can use simple
+console named 'canf_ktest_console'. The module is dependent on a
+another separate module 'canfestival.ko' implementing CanOpen stack
+which exports requisite functions. Canfestival.ko module is then dependent
+on CAN card driver module, by default CAN virtual driver will be loaded.
+After installing modules (make install), all dependencies are solved
+automatically by kernel. To run the example type: 
+<PRE>
+	sh run.sh
+</PRE>
+It will insert required modules, start console, and after quitting
+console it'll remove modules from kernel.
+
+<P>
+
+<P><P>
+<BR>
+
+
+<P>
+
+<H2><A NAME="SECTION00095000000000000000">
+TestMasterMicroMod </A>
+</H2>
+
+<P>
+<PRE>
+  **************************************************************
+  *  TestMasterMicroMod                                        *
+  *                                                            *
+  *  A simple example for PC.                                  *
+  *  A CanOpen master that control a MicroMod module:          *
+  *  - setup module TPDO 1 transmit type                       *
+  *  - setup module RPDO 1 transmit type                       *
+  *  - setup module hearbeatbeat period                        *
+  *  - disable others TPDOs                                    *
+  *  - set state to operational                                *
+  *  - send periodic SYNC                                      *
+  *  - send periodic RPDO 1 to Micromod (digital output)       *
+  *  - listen Micromod's TPDO 1 (digital input)                *
+  *  - Mapping RPDO 1 bit per bit (digital input)              *
+  *                                                            *
+  *   Usage:                                                   *
+  *   ./TestMasterMicroMod  [OPTIONS]                          *
+  *                                                            *
+  *   OPTIONS:                                                 *
+  *     -l : Can library ["libcanfestival_can_virtual.so"]     *
+  *                                                            *
+  *    Slave:                                                  *
+  *     -i : Slave Node id format [0x01 , 0x7F]                *
+  *                                                            *
+  *    Master:                                                 *
+  *     -m : bus name ["1"]                                    *
+  *     -M : 1M,500K,250K,125K,100K,50K,20K,10K                *
+  *                                                            *
+  **************************************************************
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00096000000000000000">
+TestMasterSlaveLSS</A>
+</H2>
+
+<P>
+<PRE>
+**************************************************************
+*  TestMasterSlaveLSS                                        *
+*                                                            *
+*  A LSS example for PC. It does implement 3 CanOpen         *
+*  nodes in the same process. A master and 2 slaves. All     *
+*  communicate together, exchanging periodically NMT, SYNC,  *
+*  SDO and PDO. Master configure heartbeat producer time     *
+*  at 1000 ms for the slaves by concise DCF.                 *
+*                                                            *
+*   Usage:                                                   *
+*   ./TestMasterSlaveLSS  [OPTIONS]                          *
+*                                                            *
+*   OPTIONS:                                                 *
+*     -l : Can library ["libcanfestival_can_virtual.so"]     *
+*                                                            *
+*    SlaveA:                                                 *
+*     -a : bus name ["0"]                                    *
+*     -A : 1M,500K,250K,125K,100K,50K,20K,10K,none(disable)  *
+*                                                            *
+*    SlaveB:                                                 *
+*     -b : bus name ["1"]                                    *
+*     -B : 1M,500K,250K,125K,100K,50K,20K,10K,none(disable)  *
+*                                                            *
+*    Master:                                                 *
+*     -m : bus name ["2"]                                    *
+*     -M : 1M,500K,250K,125K,100K,50K,20K,10K,none(disable)  *
+*                                                            *
+**************************************************************
+</PRE>
+
+<P>
+The function used to request LSS services is <SPAN  CLASS="textit">configNetworkNode</SPAN>. It works similar to <SPAN  CLASS="textit">writeNetworkDict</SPAN> and its model is the following:
+<PRE>
+UNS8 configNetworkNode (CO_Data* d, UNS8 command, void *dat1, void* dat2, 
+LSSCallback_t Callback)
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00097000000000000000">
+FastScan</A>
+</H2>
+FastScan is a special LSS service that allow the dynamically identification of the slave nodes even if they do not have a valid nodeID. This identification is based on the LSS address, composed by vendor ID, product code, revision number and serial number (refer to the DS305 for more information). The LSS address can be partially known or fully unknown. To represent this fact in Canfestival, we use the structure <SPAN  CLASS="textit">lss_fs_transfer_t</SPAN>. The parameter <SPAN  CLASS="textit">FS_LSS_ID</SPAN> is an array of four elements which represents the four elements of the LSS address. The other parameter, <SPAN  CLASS="textit">FS_BitChecked</SPAN>, is also an array and it represents how many bits of each LSS address element are UNKNOWN. The next example is taken from <SPAN  CLASS="textit">TestMasterSlaveLSS</SPAN>, where only the last two digits (8 bits) of vendor ID and product code are unknown and revision number and serial number are totally unknown. 
+
+<P>
+<PRE>
+lss_fs_transfer_t lss_fs;
+/* The VendorID and ProductCode are partialy known, */
+/* except the last two digits (8 bits). */
+lss_fs.FS_LSS_ID[0]=Vendor_ID;
+lss_fs.FS_BitChecked[0]=8;
+lss_fs.FS_LSS_ID[1]=Product_Code;
+lss_fs.FS_BitChecked[1]=8;
+/* serialNumber and RevisionNumber are unknown, */
+/* i.e. the 8 digits (32bits) are unknown. */
+lss_fs.FS_BitChecked[2]=32;
+lss_fs.FS_BitChecked[3]=32;
+res=configNetworkNode(&amp;d,LSS_IDENT_FASTSCAN,&amp;lss_fs,0,CheckLSSAndContinue);
+</PRE>
+
+<P>
+
+<H1><A NAME="SECTION000100000000000000000">
+Developing a new node</A>
+</H1>
+
+<P>
+Using provided examples as a base for your new node is generally a
+good idea. You can also use the provided *.od files as a base for
+your node object dictionary.
+
+<P>
+Creating a new CANopen node implies to define the Object Dictionary
+of this node. For that, developer has to provide a C file. This C
+file contains the definition of all dictionary entries, and some kind
+of index table that helps the stack to access some entries directly.
+
+<P>
+
+<H2><A NAME="SECTION000101000000000000000">
+Using Dictionary Editor GUI</A>
+</H2>
+
+<P>
+The Object Dictionary Editor is a WxPython based GUI that is used
+to create the C file needed to create a new CANopen node.
+
+<P>
+
+<H3><A NAME="SECTION000101100000000000000">
+Installation and usage on Linux</A>
+</H3>
+
+<P>
+You first have to download and install Gnosis XML modules. This is
+automated by a Makefile rule.
+
+<P>
+<PRE>
+	cd objdictgen 
+	make
+</PRE>
+
+<P>
+Now start the editor.
+
+<P>
+<PRE>
+	python objdictedit.py [od files...]
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION000101200000000000000">
+Installation and usage on Windows</A>
+</H3>
+
+<P>
+Install Python (at least version 2.4) and wxPython (at least version
+2.6.3.2).
+
+<P>
+Cygwin users can install Gnosis XML utils the same as Linux use. Just
+call make.
+
+<P>
+<PRE>
+	cd objdictgen
+	make
+</PRE>
+
+<P>
+Others will have to download and install Gnosis XML by hand :
+
+<P>
+<PRE>
+	Gnosis Utils:
+	http://freshmeat.net/projects/gnosisxml/
+	http://www.gnosis.cx/download/
+	Get latest version.
+</PRE>
+
+<P>
+Download CanFestival archive and uncompress it. Use windows file explorer
+to go into CanFestival3&#92;objdicgten, and double -click
+on objdictedit.py.
+
+<P>
+
+<H3><A NAME="SECTION000101300000000000000">
+About</A>
+</H3>
+
+<P>
+The Object Dictionary editor GUI is a python application that use
+the Model-View-Controller design pattern. It depends on WxPython to
+display view on any supported platform.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="508" HEIGHT="485" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000001FC000001E5D65E8766.png"
+ ALT="Image 10000201000001FC000001E5D65E8766"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000101400000000000000">
+Main view</A>
+</H3>
+
+<P>
+Top list let you choose dictionary section, bottom left list is the
+selected index in that dictionary, and bottom right list are edited
+sub -indexes.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="999" HEIGHT="455" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000003E7000001C7B0296577.png"
+ ALT="Image 10000201000003E7000001C7B0296577"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="182" HEIGHT="223" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000000000000B6000000DF1EDD1E73.png"
+ ALT="Image 10000000000000B6000000DF1EDD1E73"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="172" HEIGHT="201" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000000000000AC000000C9C3F53FA6.png"
+ ALT="Image 10000000000000AC000000C9C3F53FA6"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="109" HEIGHT="163" ALIGN="BOTTOM" BORDER="0"
+ SRC="./100000000000006D000000A31EC8CB54.png"
+ ALT="Image 100000000000006D000000A31EC8CB54"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="170" HEIGHT="96" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000000000000AA0000006014F74635.png"
+ ALT="Image 10000000000000AA0000006014F74635"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000101500000000000000">
+New node</A>
+</H3>
+
+<P>
+Edit your node name and type. Choose your inherited specific profile.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="450" HEIGHT="350" ALIGN="BOTTOM" BORDER="0"
+ SRC="./new_node.png"
+ ALT="Image new_node"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000101600000000000000">
+Node info</A>
+</H3>
+
+<P>
+Edit your node name and type.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="300" HEIGHT="280" ALIGN="BOTTOM" BORDER="0"
+ SRC="./node_info.png"
+ ALT="Image node_info"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000101700000000000000">
+Profile editor</A>
+</H3>
+
+<P>
+Chose the used profile to edit.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="171" HEIGHT="200" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000000000000AB000000C88F594413.png"
+ ALT="Image 10000000000000AB000000C88F594413"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+Pick up optional chosen profile entries.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="734" HEIGHT="472" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000002DE000001D82D89C224.png"
+ ALT="Image 10000201000002DE000001D82D89C224"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000101800000000000000">
+User types</A>
+</H3>
+
+<P>
+Use User Types to implement value boundaries, and string length
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="452" HEIGHT="263" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000001C40000010766961D7F.png"
+ ALT="Image 10000201000001C40000010766961D7F"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION000101900000000000000">
+Mapped variable</A>
+</H3>
+
+<P>
+Add your own specific dictionary entries and associated mapped variables.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="452" HEIGHT="221" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000001C4000000DD129D4661.png"
+ ALT="Image 10000201000001C4000000DD129D4661"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H3><A NAME="SECTION0001011000000000000000">
+Integrated help</A>
+</H3>
+
+<P>
+Using F1 key, you can get context sensitive help.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="755" HEIGHT="523" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000002F30000020B23ED7F67.png"
+ ALT="Image 10000201000002F30000020B23ED7F67"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+In order to do that, official 301_v04000201.pdf file must be placed
+into doc/ directory, and xpdf must be present on your system.
+
+<P>
+F2 key open HTML CanFestival help.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="836" HEIGHT="602" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000003440000025ACC3FD2F1.png"
+ ALT="Image 10000201000003440000025ACC3FD2F1"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION000102000000000000000">
+Generating the object Dictionary</A>
+</H2>
+
+<P>
+Once object dictionary has been edited and saved, you have to generate
+object dictionary C code for your CanFestival node.
+
+<P>
+
+<H3><A NAME="SECTION000102100000000000000">
+With GUI</A>
+</H3>
+
+<P>
+Menu entry ``File/Build Dictionary''.
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="183" HEIGHT="198" ALIGN="BOTTOM" BORDER="0"
+ SRC="./10000201000000B7000000C66AF89CD5.png"
+ ALT="Image 10000201000000B7000000C66AF89CD5"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+Choose C file to create or overwrite. Header file will be also created
+with the same prefix as C file.
+
+<P>
+
+<H3><A NAME="SECTION000102200000000000000">
+With command line</A>
+</H3>
+
+<P>
+<PRE>
+	Usage of objdictgen.py :
+	python objdictgen.py XMLFilePath CfilePath
+</PRE>
+
+<P>
+
+<H1><A NAME="SECTION000110000000000000000">
+FAQ</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000111000000000000000">
+General</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION000111100000000000000">
+Does the code compiles on Windows ?</A>
+</H3>
+
+<P>
+Yes, with both Cygwin and Visual Studio C++. 
+
+<P>
+Because CANopen layer is coded with C, put a compilation option
+/TC or /TP if you plan to mix C++ files. See the MSDN documentation
+about that.
+
+<P>
+
+<H3><A NAME="SECTION000111200000000000000">
+How to fit the library to an other microcontr�ler ?</A>
+</H3>
+
+<P>
+First, be sure that you have at least 40K bytes of program memory,
+and about 2k of RAM.
+
+<P>
+You have to create target specific interface to HW resources. Take
+model on bundled interfaces provided in drivers/ and create your own
+interface. You also have to update Makefile.in files for target specific
+cflags and options. Choose -target= configure switch to compile
+your specific interface.
+
+<P>
+You are welcome to contribute -back your own interfaces! Other Canfestival
+users will use it and provide feedback, tests and enhancements.
+
+<P>
+
+<H3><A NAME="SECTION000111300000000000000">
+Is CanFestival3 conform to DS301 v.4.02 ?</A>
+</H3>
+
+<P>
+Thanks to Philippe Foureys (IUT of Valence), a slave node have been
+tested with the National Instrument CANopen Conformance Test. It
+passed the test with success.
+
+<P>
+Some very small unconformity have been found in very unusual situations,
+for example in the SDO code response to wrong messages.
+
+<P>
+
+<H2><A NAME="SECTION000112000000000000000">
+LINUX</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION000112100000000000000">
+How to use a Peaksystem CAN board ?</A>
+</H3>
+
+<P>
+Just install peak driver and then compile and install Canfestival.
+Peak driver is detected at compile time.
+
+<P>
+
+<H3><A NAME="SECTION000112200000000000000">
+How to use an unsupported CAN board ?</A>
+</H3>
+
+<P>
+You have to install the specific driver on your system, with necessary
+libs and headers.
+
+<P>
+Use can_peak.c/h or can_virtual.c/h as an example, and adapt it
+to your driver API.
+
+<P>
+Execute configure script and choose -can=mydriver
+
+<P>
+
+<H2><A NAME="SECTION000113000000000000000">
+Win32</A>
+</H2>
+
+<P>
+Compatibility:
+
+<P>
+
+<OL>
+<LI>Code was compiled MS VisualStudio 2003.NET and VisualStudio 2005.NET
+for WindowsXP ANSI and UNICODE configurations and for WindowsCE
+5.0. 
+</LI>
+<LI>Some preliminary testing was done, but not enough to be used in mission
+critical projects. 
+</LI>
+</OL>
+Additional Features:
+
+<P>
+
+<OL>
+<LI>Non -integral integers support implementation UNS24, UNS40, UNS48
+etc. 
+</LI>
+<LI>When enable debug output with DEBUG_WAR_CONSOLE_ON or DEBUG_ERR_CONSOLE_ON,
+you can navigate in CanFestival source code by double clicking at
+diagnostic lines in VisualStudio.NET 200X Debug Output Window. 
+</LI>
+</OL>
+Custom size integral types such as INTEGER24, UNS40, INTEGER56 etc.
+have been defined as 64 bits integers. You will need to replace sizeof(TYPE)
+operators to sizeof_TYPE definitions in generated code, i.e. replace
+sizeof(UNS40) with sizeof_UNS40.
+
+<P>
+
+<H2><A NAME="SECTION000114000000000000000">
+HCS12</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION000114100000000000000">
+Which board are you using ?</A>
+</H3>
+
+<P>
+A T -board from elektronikladen with a MC9S12DP256 or MC9S12DG256.
+
+<P>
+
+<H3><A NAME="SECTION000114200000000000000">
+Does the code compile with an other compiler than GNU gcc ?</A>
+</H3>
+
+<P>
+It is known to work with Metrowerks CodeWarrior. Here are some tips
+from Philippe Foureys. :
+
+<P>
+
+<H4><A NAME="SECTION000114210000000000000">
+Interrupt functions</A>
+</H4>
+
+<P>
+
+<H5><A NAME="SECTION000114211000000000000">
+Code for GCC:
+</A>
+</H5>
+
+<P>
+<PRE>
+	// prototype
+	void __attribute__((interrupt))timer3Hdl(void):
+	// function
+	void __attribute__((interrupt))timer3Hdl(void){...}
+</PRE>
+
+<P>
+
+<H5><A NAME="SECTION000114212000000000000">
+Code for CodeWarrior
+</A>
+</H5>
+
+<P>
+<PRE>
+	// protoype
+	void interrupt timer3Hdl(void);
+	// function
+	pragma CODE_SEG__NEAR_SEG_NON_BANKED
+	void interrupt timer3Hdl(void)
+	{...}
+	pragma CODE_SEG_DEFAULT
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION000114220000000000000">
+Interrupt lock, unlock
+</A>
+</H4>
+
+<P>
+
+<H5><A NAME="SECTION000114221000000000000">
+Code for GCC
+</A>
+</H5>
+
+<P>
+<PRE>
+ void unlock (void)
+ {
+   __asm__ __volatile__("cli");
+ }
+ void lock (void)
+ {
+   unsigned short mask;
+   __asm__ __volatile__("tpa\n\tsei":"=d"(mask));
+ }
+</PRE>
+
+<P>
+
+<H5><A NAME="SECTION000114222000000000000">
+Code for CodeWarrior</A>
+</H5>
+
+<P>
+<PRE>
+void unlock (void)
+	{
+	  __asm("cli");
+	}
+	void lock (void)
+	{
+	  unsigned short mask;
+	  __asm
+	 {
+	  tpa:tsei:"=d"(mask);
+	 }
+	}
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION000114230000000000000">
+Initialize function</A>
+</H4>
+
+<P>
+
+<H5><A NAME="SECTION000114231000000000000">
+Code for GCC</A>
+</H5>
+
+<P>
+<PRE>
+void initCanHCS12 (void)
+{  
+  //Init the HCS12 microcontroler for CanOpen 
+  initHCS12();
+   // Init the HCS12  CAN driver
+  const canBusInit bi0 = {
+    0,    /* no low power                 */ 
+    0,    /* no time stamp                */
+    1,    /* enable MSCAN                 */
+    0,    /* clock source : oscillator (In fact, it is not used)   */
+    0,    /* no loop back                 */
+    0,    /* no listen only               */
+    0,    /* no low pass filter for wk up */
+  CAN_Baudrates[CAN_BAUDRATE_250K],
+    {
+      0x00,    /* Filter on 16 bits.
+                  See Motorola Block Guide V02.14 fig 4-3 */
+      0x00, 0xFF, /* filter 0 hight accept all msg      */
+      0x00, 0xFF, /* filter 0 low accept all msg        */
+      0x00, 0xFF, /* filter 1 hight filter all of  msg  */
+      0x00, 0xFF, /* filter 1 low filter all of  msg    */
+      0x00, 0xFF, /* filter 2 hight filter most of  msg */
+      0x00, 0xFF, /* filter 2 low filter most of  msg   */
+      0x00, 0xFF, /* filter 3 hight filter most of  msg */
+      0x00, 0xFF, /* filter 3 low filter most of  msg   */
+    }
+};
+</PRE>
+
+<P>
+
+<H5><A NAME="SECTION000114232000000000000">
+Code for CodeWarrior
+</A>
+</H5>
+
+<P>
+<PRE>
+void initCanHCS12 (void)
+{  
+  //Init the HCS12 microcontroler for CanOpen 
+  initHCS12();
+   // Init the HCS12  CAN driver
+  const canBusInit bi0 = {
+    0,    /* no low power                 */ 
+    0,    /* no time stamp                */
+    1,    /* enable MSCAN                 */
+    0,    /* clock source : oscillator (In fact, it is not used)   */
+    0,    /* no loop back                 */
+    0,    /* no listen only               */
+    0,    /* no low pass filter for wk up */
+    {
+     1, /* clksrc */
+     3, /* brp    */
+     0, /* sjw    */
+     0, /* samp   */
+     1, /* tseg2  */
+     12,/* tseg1  */
+    },
+    {
+      0x00,    /* Filter on 16 bits.
+                 See Motorola Block Guide V02.14 fig 4-3 */
+      0x00, 0xFF, /* filter 0 hight accept all msg      */
+      0x00, 0xFF, /* filter 0 low accept all msg        */
+      0x00, 0xFF, /* filter 1 hight filter all of  msg  */
+      0x00, 0xFF, /* filter 1 low filter all of  msg    */
+      0x00, 0xFF, /* filter 2 hight filter most of  msg */
+      0x00, 0xFF, /* filter 2 low filter most of  msg   */
+      0x00, 0xFF, /* filter 3 hight filter most of  msg */
+      0x00, 0xFF, /* filter 3 low filter most of  msg   */
+    }
+};
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION000114300000000000000">
+Does the code works in banked memory ?</A>
+</H3>
+
+<P>
+No. Today it seems that the port of gcc is bogged for using the banked
+memory. So, unfortunately, we are limited to 48 Kbytes of memory code.
+
+<P>
+
+<H3><A NAME="SECTION000114400000000000000">
+What GCC version are you using ?</A>
+</H3>
+
+<P>
+We are using the stable RPM release 2.2 :
+
+<P>
+
+<OL>
+<LI>GNU Gcc 3.0.4. Build 20030501 
+</LI>
+<LI>Newlib 1.10.0 Build 20030421 
+</LI>
+<LI>GNU Binutils 2.12.1 Build 20030427 
+</LI>
+</OL>
+
+<P>
+
+<H1><A NAME="SECTION000120000000000000000">
+Documentation resources</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000121000000000000000">
+CIA : Can in Automation </A>
+</H2>
+
+<P>
+http://www.can-cia.de/http://www.can -cia.de
+
+<P>
+
+<H2><A NAME="SECTION000122000000000000000">
+Resources and training in CANopen 
+</A>
+</H2>
+
+<P>
+http://www.esacademy.com/http://www.esacademy.com
+
+<P>
+
+<H2><A NAME="SECTION000123000000000000000">
+Elektronikladen HCS12 T -board </A>
+</H2>
+
+<P>
+http://www.elektronikladen.de/en_hcs12tb.htmlhttp://www.elektronikladen.de/en_hcs12tb.html
+
+<P>
+
+<H2><A NAME="SECTION000124000000000000000">
+Gnu gcc compiler for HC12 </A>
+</H2>
+
+<P>
+http://m68hc11.serveftp.org/m68hc11_port.phphttp://m68hc11.serveftp.org/m68hc11_port.php
+
+<P>
+
+<H2><A NAME="SECTION000125000000000000000">
+Motorola documentation on HC12 </A>
+</H2>
+
+<P>
+http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MC9S12DP256http://www.freescale.com/webapp/sps/site/prod_summary.jsp?code=MC9S12DP256
+
+<P>
+
+<H2><A NAME="SECTION000126000000000000000">
+Lauterbach debugger for HC12 </A>
+</H2>
+
+<P>
+http://www.lauterbach.com/http://www.lauterbach.com
+
+<P>
+
+<H2><A NAME="SECTION000127000000000000000">
+Python language </A>
+</H2>
+
+<P>
+http://www.python.org/http://www.python.org
+
+<P>
+
+
+<P>
+
+<H1><A NAME="SECTION000130000000000000000">
+About the project</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000131000000000000000">
+Contributors </A>
+</H2>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="600" HEIGHT="131" ALIGN="BOTTOM" BORDER="0"
+ SRC="./1000020100000258000000832C6FFAB4.png"
+ ALT="Image 1000020100000258000000832C6FFAB4"> 
+</DIV>
+<P>
+<DIV ALIGN="CENTER">
+</DIV>
+
+<P>
+Unit� mixte de recherche INRETS -LCPC
+
+<P>
+sur les Interractions V�hicule -Infrastructure -Conducteur
+
+<P>
+14, route de la mini�re
+
+<P>
+78000 Versailles
+
+<P>
+FRANCE
+
+<P>
+Tel : +33 1 40 43 29 01
+
+<P>
+http://www.inrets.fr/ur/livichttp://www.inrets.fr/ur/livic
+
+<P>
+<SPAN  CLASS="textbf">Contributors :</SPAN> Francis DUPIN
+
+<P>
+Camille BOSSARD
+
+<P>
+Laurent ROMIEUX
+
+<P>
+
+<P><P>
+<BR>
+
+
+<P>
+<SPAN  CLASS="textbf">Contributors :</SPAN> Edouard TISSERANT (Original author)
+
+<P>
+Laurent BESSARD
+
+<P>
+
+<P><P>
+<BR>
+
+
+<P>
+Many thanks to the other contributors for their great work:
+
+<P>
+Raphael ZULLIGER
+
+<P>
+David DUMINY (st� A6R)
+
+<P>
+Zakaria BELAMRI
+
+<P>
+
+<H2><A NAME="SECTION000132000000000000000">
+Getting support</A>
+</H2>
+
+<P>
+Send your feedback and bug reports to mailto:canfestival-devel@lists.sourceforge.netcanfestival-devel@lists.sourceforge.net.
+
+<P>
+
+<H2><A NAME="SECTION000133000000000000000">
+Contributing</A>
+</H2>
+
+<P>
+You are free to contribute your specific interfaces back to the project.
+This way, you can hope to get support from CanFestival users community.
+
+<P>
+Please send your patch to mailto:canfestival-devel@lists.sourceforge.netcanfestival
+-devel@lists.sourceforge.net.
+
+<P>
+Feel free to create some new predefined DS -4xx profiles (*.prf)
+in objdictgen/config, as much as possible respectful to the official
+specifications.
+
+<P>
+
+<H2><A NAME="SECTION000134000000000000000">
+License</A>
+</H2>
+
+<P>
+All the project is licensed with LGPL. This mean you can link CanFestival
+with any code without being obliged to publish it.
+
+<P>
+<PRE>
+#This file is part of CanFestival, a library implementing CanOpen Stack. 
+# 
+#Copyright (C): Edouard TISSERANT, Francis DUPIN and Laurent BESSARD 
+# 
+#See COPYING file for copyrights details. 
+# 
+#This library is free software; you can redistribute it and/or 
+#modify it under the terms of the GNU Lesser General Public 
+#License as published by the Free Software Foundation; either 
+#version 2.1 of the License, or (at your option) any later version. 
+# 
+#This library is distributed in the hope that it will be useful, 
+#but WITHOUT ANY WARRANTY; without even the implied warranty of 
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+#Lesser General Public License for more details. 
+# 
+#You should have received a copy of the GNU Lesser General Public 
+#License along with this library; if not, write to the Free Software 
+#Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+</PRE>
+
+<P>
+
+<H1><A NAME="SECTION000140000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG><BIG CLASS="XHUGE">The CanFestival CANOpen stack manual</BIG></STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2008 (1.71)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+Nikos Drakos, 
+Computer Based Learning Unit, University of Leeds.
+<BR>
+Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 -dir html manual.tex</TT>
+<P>
+The translation was initiated by Jens Geisler on 2014-10-05
+<DIV CLASS="navigation"><HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="/usr/share/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="/usr/share/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="/usr/share/latex2html/icons/prev_g.png">   
+<BR></DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+Jens Geisler
+2014-10-05
+</ADDRESS>
+</BODY>
+</HTML>
