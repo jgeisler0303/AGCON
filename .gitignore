@@ -48,6 +48,7 @@ eagle.epf
 
 # Other ignores
 .directory
+.kate-swp
 
 # Python
 *.pyc
