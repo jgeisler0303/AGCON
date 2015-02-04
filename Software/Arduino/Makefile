@@ -6,32 +6,19 @@
 
 
 MCU = atmega328p
+ARDUINO_DIR = /usr/share/arduino
+ARDUINO_CORE_PATH= $(ARDUINO_DIR)/hardware/arduino/cores/arduino
+ARDUINO_VARIANT= $(ARDUINO_DIR)/hardware/arduino/variants/standard
+ARDUINO_LIB_PATH= $(ARDUINO_DIR)/libraries
+USER_LIB_PATH := /home/jgeisler/sketchbook/libraries
+ARDUINO_VERSION= 105
 
-# Processor frequency.
-#     This will define a symbol, F_CPU, in all source code files equal to the 
-#     processor frequency. You can then use this symbol in your source code to 
-#     calculate timings. Do NOT tack on a 'UL' at the end, this will be done
-#     automatically to create a 32-bit value in your source code.
-#     Typical values are:
-#         F_CPU =  1000000
-#         F_CPU =  1843200
-#         F_CPU =  2000000
-#         F_CPU =  3686400
-#         F_CPU =  4000000
-#         F_CPU =  7372800
-#         F_CPU =  8000000
-#         F_CPU = 11059200
-#         F_CPU = 14745600
 F_CPU = 16000000
-#         F_CPU = 18432000
-#         F_CPU = 20000000
-#         F_CPU = 8000000
 
 FORMAT = ihex
 TARGET = SlaveArduino
 SRC= 
-CPPSRC= 	mcp_can.cpp\
-	timer_Arduino.cpp\
+CPPSRC= 	timer_Arduino.cpp\
 	dcf.cpp\
 	timer.cpp\
 	emcy.cpp\
@@ -48,8 +35,25 @@ CPPSRC= 	mcp_can.cpp\
 	ds401.cpp\
 	main.cpp
 
+USER_LIB_CPP_SRCS= $(USER_LIB_PATH)/mcp_can/mcp_can.cpp
+
+LIB_CPP_SRCS= $(ARDUINO_LIB_PATH)/SPI/SPI.cpp
+
+CORE_C_SRCS = $(wildcard $(ARDUINO_CORE_PATH)/*.c)
+CORE_C_SRCS += $(wildcard $(ARDUINO_CORE_PATH)/avr-libc/*.c)
+CORE_CPP_SRCS = $(wildcard $(ARDUINO_CORE_PATH)/*.cpp)
+CORE_CPP_SRCS := $(filter-out %main.cpp, $(CORE_CPP_SRCS))
+
+
 OBJDIR=obj
-EXTRAINCDIRS = 
+EXTRAINCDIRS = $(USER_LIB_PATH)/mcp_can \
+	$(ARDUINO_CORE_PATH) \
+	$(ARDUINO_VARIANT) \
+	$(ARDUINO_LIB_PATH)/SPI
+	
+#	$(ARDUINO_VAR_PATH)/$(VARIANT) \
+#	$(SYS_INCLUDES) \
+#	$(PLATFORM_INCLUDES)
 
 ASRC = 
 OPT = s
@@ -70,10 +74,10 @@ DEBUG = stabs
 CSTANDARD = -std=gnu++11
 
 # Place -D or -U options here
-CDEFS = -DF_CPU=$(F_CPU)UL
+CDEFS = -DF_CPU=$(F_CPU)UL -DARDUINO=$(ARDUINO_VERSION) -D__PROG_TYPES_COMPAT__
 
 # Place -I options here
-CINCS =
+CINCS = 
 
 
 CDEBUG = -g$(DEBUG)
@@ -81,8 +85,11 @@ CWARN = -Wall
 # -Wstrict-prototypes
 CTUNING = -fsigned-char -funsigned-bitfields -fpack-struct -fshort-enums
 #CEXTRA = -Wa,-adhlns=$(<:.c=.lst)
+CEXTRA = -ffunction-sections -fdata-sections
 CFLAGS = $(CDEBUG) $(CDEFS) $(CINCS) -O$(OPT) $(CWARN) $(CSTANDARD) $(CEXTRA)
 CFLAGS += $(patsubst %,-I%,$(EXTRAINCDIRS))
+
+ 
 
 
 #ASFLAGS = -Wa,-adhlns=$(<:.S=.lst),-gstabs 
@@ -118,7 +125,7 @@ MATH_LIB = -lm
 # only used for heap (malloc()).
 #EXTMEMOPTS = -Wl,--defsym=__heap_start=0x801100,--defsym=__heap_end=0x80ffff
 
-EXTMEMOPTS =
+EXTMEMOPTS = -Wl,--gc-sections -O$(OPT)
 
 #LDMAP = $(LDFLAGS) -Wl,-Map=$(TARGET).map,--cref
 LDFLAGS = $(EXTMEMOPTS) $(LDMAP) $(PRINTF_LIB) $(SCANF_LIB) $(MATH_LIB)
@@ -156,14 +163,33 @@ OBJCOPY = avr-objcopy
 OBJDUMP = avr-objdump
 SIZE = avr-size
 NM = avr-nm
+AR= avr-ar
 AVRDUDE = avrdude
 REMOVE = rm -f
 REMOVEDIR = rm -rf
 MV = mv -f
+MKDIR= mkdir -p
 
 # Define all object files.
 # OBJ = $(SRC:.c=.o) $(ASRC:.S=.o) 
-OBJ = $(SRC:%.c=$(OBJDIR)/%.o) $(CPPSRC:%.cpp=$(OBJDIR)/%.o) $(ASRC:%.S=$(OBJDIR)/%.o) 
+LOCAL_OBJS = $(SRC:%.c=$(OBJDIR)/%.o) $(CPPSRC:%.cpp=$(OBJDIR)/%.o) $(ASRC:%.S=$(OBJDIR)/%.o) 
+#OBJ_FILES = $(SRC: .c=.o) $(CPPSRC:.cpp=.o) $(ASRC:.S=.o) 
+#OBJS = $(patsubst %,$(OBJDIR)/%,$(OBJ_FILES))
+LIB_OBJS = $(patsubst $(ARDUINO_LIB_PATH)/%.cpp,$(OBJDIR)/libs/%.o,$(LIB_CPP_SRCS)) \
+	$(patsubst $(ARDUINO_LIB_PATH)/%.c,$(OBJDIR)/libs/%.o,$(LIB_C_SRCS)) \
+	$(patsubst $(ARDUINO_LIB_PATH)/%.S,$(OBJDIR)/libs/%.o,$(LIB_AS_SRCS))
+
+USER_LIB_OBJS = $(patsubst $(USER_LIB_PATH)/%.cpp,$(OBJDIR)/userlibs/%.o,$(USER_LIB_CPP_SRCS)) \
+	$(patsubst $(USER_LIB_PATH)/%.c,$(OBJDIR)/userlibs/%.o,$(USER_LIB_C_SRCS)) \
+	$(patsubst $(USER_LIB_PATH)/%.S,$(OBJDIR)/userlibs/%.o,$(USER_LIB_AS_SRCS))
+
+CORE_OBJ_FILES = $(CORE_C_SRCS:.c=.o) $(CORE_CPP_SRCS:.cpp=.o) $(CORE_AS_SRCS:.S=.o)
+CORE_OBJS = $(patsubst $(ARDUINO_CORE_PATH)/%, \
+	$(OBJDIR)/core/%,$(CORE_OBJ_FILES))
+
+OBJ= $(LOCAL_OBJS) $(USER_LIB_OBJS) $(LIB_OBJS) $(CORE_OBJS)
+
+CORE_LIB = $(OBJDIR)/libcore.a
 
 # Define all listing files.
 # LST = $(ASRC:.S=.lst) $(SRC:.c=.lst)
@@ -234,15 +260,17 @@ extcoff: $(TARGET).elf
 
 
 # Link: create ELF output file from object files.
-$(TARGET).elf: $(OBJ)
+$(TARGET).elf: $(OBJ) 
 	$(CC) $(ALL_CFLAGS) $(OBJ) --output $@ $(LDFLAGS)
 
+$(CORE_LIB): $(CORE_OBJS) $(LIB_OBJS) $(PLATFORM_LIB_OBJS) $(USER_LIB_OBJS)
+	$(AR) rcs $@ $(CORE_OBJS) $(LIB_OBJS) $(PLATFORM_LIB_OBJS) $(USER_LIB_OBJS)
 
 # Compile: create object files from C source files.
 # .c.o:
 $(OBJDIR)/%.o : %.c
 	$(CC) -c $(ALL_CFLAGS) $< -o $@
-	gcc -MM $(CFLAGS) $*.c > $*.d
+#	gcc -MM $(CFLAGS) $*.c > $*.d
 #	@mv -f $*.d $*.d.tmp
 #	@sed -e 's|.*:|$*.o:|' < $*.d.tmp > $*.d
 #	@cp -f $*.d $*.d.tmp
@@ -252,6 +280,26 @@ $(OBJDIR)/%.o : %.c
 
 $(OBJDIR)/%.o : %.cpp
 	$(CC) -c $(ALL_CPPFLAGS) $< -o $@
+
+$(OBJDIR)/libs/%.o : $(ARDUINO_LIB_PATH)/%.cpp
+	@$(MKDIR) $(dir $@)
+	$(CC) -c $(ALL_CPPFLAGS) $< -o $@
+
+$(OBJDIR)/platformlibs/%.o : $(ARDUINO_PLATFORM_LIB_PATH)/%.cpp
+	@$(MKDIR) $(dir $@)
+	$(CC) -c $(ALL_CPPFLAGS) $< -o $@
+
+$(OBJDIR)/userlibs/%.o : $(USER_LIB_PATH)/%.cpp
+	@$(MKDIR) $(dir $@)
+	$(CC) -c $(ALL_CPPFLAGS) $< -o $@
+
+$(OBJDIR)/core/%.o : $(ARDUINO_CORE_PATH)/%.cpp
+	@$(MKDIR) $(dir $@)
+	$(CC) -c $(ALL_CPPFLAGS) $< -o $@
+
+$(OBJDIR)/core/%.o : $(ARDUINO_CORE_PATH)/%.c
+	@$(MKDIR) $(dir $@)
+	$(CC) -c $(ALL_CFLAGS) $< -o $@
 
 # -include $(OBJ:.o=.d)
 

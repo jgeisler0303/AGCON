@@ -37,6 +37,17 @@ Short description:
 #include "ObjDict.h"
 #include "ds401.h"
 #include "timerscfg.h"
+#include "can.h"
+#include "Arduino.h"
+
+unsigned char Flag_Recv = 0;
+unsigned char len = 0;
+unsigned char buf[8];
+char str[20];
+int res;
+
+MCP_CAN CAN(7);
+
 
 volatile unsigned char timer_interrupt = 0;		// Set if timer interrupt elapsed
 unsigned char inputs;
@@ -50,10 +61,36 @@ static Message m = Message_Initializer;		// contain a CAN message
 
 void sys_init();
 
-// macros to handle the schedule timer
-#define sys_timer			timer_interrupt
-#define reset_sys_timer()		timer_interrupt = 0
-#define CYCLE_TIME	        	1000     	// Sample Timebase [us]
+unsigned char canInit(unsigned int bitrate) {
+  if(bitrate==500)
+    return CAN.begin(CAN_500KBPS);
+  else
+    return 0;
+}
+
+unsigned char canSend(CAN_PORT notused, Message *m) {
+  return CAN.sendMsgBuf(m->cob_id, 0, m->rtr, m->len, m->data);
+}
+
+
+unsigned char canReceive(Message *m) {
+    if(CAN_MSGAVAIL == CAN.checkReceive())            // check if data coming
+    {
+      //      readMsgBufID(&(m->cob_id), &(m->len), m->data);
+      CAN.readMsgBuf(&(m->len), m->data);
+      m->cob_id= CAN.getCanId();
+      m->rtr= 0; // m_nRtr;
+      return 1;
+    } else
+      return 0;
+}
+
+
+unsigned char canChangeBaudRate_driver( CAN_HANDLE fd, char* baud) {
+  return 1;
+}
+
+static unsigned long lWaitMillis;
 
 int main(void)
 {
@@ -63,6 +100,7 @@ int main(void)
   nodeID = 23;				// Read node ID first
   setNodeId (&ObjDict_Data, nodeID);
   setState(&ObjDict_Data, Initialisation);	// Init the state
+  lWaitMillis = millis() + 1000;  // initial setup
 
   for(;;)		                        // forever loop
   {
@@ -70,9 +108,10 @@ int main(void)
       coreTimerTrigger= 0;
       TimeDispatch();                               // Call the time handler of the stack to adapt the elapsed time
     }
-    if (sys_timer)	                        // Cycle timer, invoke action on every time slice
+
+    if( (long)( millis() - lWaitMillis ) >= 0)
     {
-      reset_sys_timer();	                // Reset timer
+      lWaitMillis += 1000;  // do it again 1 second later
       digital_input[0] = get_inputs();
       digital_input_handler(&ObjDict_Data, digital_input, sizeof(digital_input));
       digital_output_handler(&ObjDict_Data, digital_output, sizeof(digital_output));
@@ -106,31 +145,8 @@ OUTPUT	void
   PORTD|= OUTPUT_MASK;	                        // Outputs (LEDs, low active) all 1
   DDRD|= OUTPUT_MASK;		                // 
 
-// Set timer 0 for main schedule time
-
-  TCCR0A|= _BV(WGM01); 		// Timer 0 CTC
-  TCCR0B|= _BV(CS01) | _BV(CS00);// Timer 0 mit CK/64 starten = 250000Hz == 0.004ms pro tick
-  TIMSK0 = _BV(OCIE0A);		        // Timer Interrupts: Timer 0 Compare
-  OCR0A = (unsigned char)(F_CPU / 64 * CYCLE_TIME/1000000 - 1);	// Reloadvalue for timer 0
   #ifdef WD_SLEEP		// Watchdog and Sleep
   wdt_reset();
   wdt_enable(WDTO_15MS);   	// Watchdogtimer start with 16 ms timeout
   #endif			// Watchdog and Sleep
-  sei();         // Enable Interrupts
-}
-
-
-#ifdef  __IAR_SYSTEMS_ICC__
-#pragma type_attribute = __interrupt
-#pragma vector=TIMER0_COMP_vect
-void TIMER0_OVF_interrupt(void)
-#else	// GCC
-ISR (TIMER0_COMPA_vect)
-#endif	// GCC
-/******************************************************************************
-Interruptserviceroutine Timer 2 Compare A for the main cycle
-******************************************************************************/
-
-{
-  timer_interrupt = 1;	// Set flag
 }

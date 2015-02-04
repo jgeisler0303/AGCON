@@ -125,12 +125,12 @@ UNS32 getODentryImpl( CO_Data* d,
   szData = ptrTable->pSubindex[bSubindex].size;
 
 #  ifdef CANOPEN_BIG_ENDIAN
-  if(endianize && *pDataType > boolean && !(
+  if(endianize && *pDataType > CANopen_TYPE_boolean && !(
          *pDataType >= visible_string &&
          *pDataType <= domain)) {
     /* data must be transmited with low byte first */
     UNS8 i, j = 0;
-    MSG_WAR(boolean, "data type ", *pDataType);
+    MSG_WAR(CANopen_TYPE_boolean, "data type ", *pDataType);
     MSG_WAR(visible_string, "data type ", *pDataType);
     for ( i = szData ; i > 0 ; i--) {
       MSG_WAR(i," ", j);
@@ -142,7 +142,7 @@ UNS32 getODentryImpl( CO_Data* d,
   else /* no endianisation change */
 #  endif
 
-  if(*pDataType != visible_string) {
+  if(*pDataType != CANopen_TYPE_visible_string) {
       memcpy(pDestData, ptrTable->pSubindex[bSubindex].pObject,szData);
       *pExpectedSize = szData;
   }else{
@@ -205,11 +205,11 @@ UNS32 _setODentry( CO_Data* d,
   if( *pExpectedSize == 0 ||
       *pExpectedSize == szData ||
       /* allow to store a shorter string than entry size */
-      (dataType == visible_string && *pExpectedSize < szData))
+      (dataType == CANopen_TYPE_visible_string && *pExpectedSize < szData))
     {
 #ifdef CANOPEN_BIG_ENDIAN
       /* re-endianize do not occur for bool, strings time and domains */
-      if(endianize && dataType > boolean && !(
+      if(endianize && dataType > CANopen_TYPE_boolean && !(
             dataType >= visible_string && 
             dataType <= domain))
         {
@@ -236,7 +236,7 @@ UNS32 _setODentry( CO_Data* d,
       *  - store string size in td_subindex 
       * */
       /* terminate visible_string with '\0' */
-      if(dataType == visible_string && *pExpectedSize < szData)
+      if(dataType == CANopen_TYPE_visible_string && *pExpectedSize < szData)
         ((UNS8*)ptrTable->pSubindex[bSubindex].pObject)[*pExpectedSize] = 0;
       
       *pExpectedSize = szData;
