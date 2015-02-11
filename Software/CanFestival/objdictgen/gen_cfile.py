@@ -62,37 +62,37 @@ def GetValidTypeInfos(typename, items=[]):
         if result:
             values = result.groups()
             if values[0] == "UNSIGNED" and int(values[1]) in [i * 8 for i in xrange(1, 9)]:
-                typeinfos = ("UNS%s"%values[1], None, "uint%s"%values[1], True)
+                typeinfos = ("UNS%s"%values[1], None, "CANopen_TYPE_uint%s"%values[1], True)
             elif values[0] == "INTEGER" and int(values[1]) in [i * 8 for i in xrange(1, 9)]:
-                typeinfos = ("INTEGER%s"%values[1], None, "int%s"%values[1], False)
+                typeinfos = ("INTEGER%s"%values[1], None, "CANopen_TYPE_int%s"%values[1], False)
             elif values[0] == "REAL" and int(values[1]) in (32, 64):
-                typeinfos = ("%s%s"%(values[0], values[1]), None, "real%s"%values[1], False)
+                typeinfos = ("%s%s"%(values[0], values[1]), None, "CANopen_TYPE_real%s"%values[1], False)
             elif values[0] in ["VISIBLE_STRING", "OCTET_STRING"]:
                 size = default_string_size
                 for item in items:
                     size = max(size, len(item))
                 if values[1] != "":
                     size = max(size, int(values[1]))
-                typeinfos = ("UNS8", size, "visible_string", False)
+                typeinfos = ("UNS8", size, "CANopen_TYPE_visible_string", False)
             elif values[0] == "DOMAIN":
                 size = 0
                 for item in items:
                     size = max(size, len(item))
-                typeinfos = ("UNS8", size, "domain", False)
+                typeinfos = ("UNS8", size, "CANopen_TYPE_domain", False)
             elif values[0] == "BOOLEAN":
-                typeinfos = ("UNS8", None, "boolean", False)
+                typeinfos = ("UNS8", None, "CANopen_TYPE_boolean", False)
             else:
                 raise ValueError, _("""!!! %s isn't a valid type for CanFestival.""")%typename
-            if typeinfos[2] not in ["visible_string", "domain"]:
+            if typeinfos[2] not in ["CANopen_TYPE_visible_string", "CANopen_TYPE_domain"]:
                 internal_types[typename] = typeinfos
         else:
             raise ValueError, _("""!!! %s isn't a valid type for CanFestival.""")%typename
     return typeinfos
 
 def ComputeValue(type, value):
-    if type == "visible_string":
+    if type == "CANopen_TYPE_visible_string":
         return "\"%s\""%value, ""
-    elif type == "domain":
+    elif type == "CANopen_TYPE_domain":
         return "\"%s\""%''.join(["\\x%2.2x"%ord(char) for char in value]), ""
     elif type.startswith("real"):
         return "%f"%value, ""
@@ -335,9 +335,9 @@ def GenerateFileContent(Node, headerfilepath, pointers_dict = {}):
                     name = FormatName("%s_%s"%(entry_infos["name"],subentry_infos["name"]))
                 else:
                     name = "%s_obj%04X_%s"%(texts["NodeName"], texts["index"], FormatName(subentry_infos["name"]))
-            if typeinfos[2] == "visible_string":
+            if typeinfos[2] == "CANopen_TYPE_visible_string":
                 sizeof = str(max(len(values[subIndex]), default_string_size))
-            elif typeinfos[2] == "domain":
+            elif typeinfos[2] == "CANopen_TYPE_domain":
                 sizeof = str(len(values[subIndex]))
             else:
                 sizeof = "sizeof (%s)"%typeinfos[0]
