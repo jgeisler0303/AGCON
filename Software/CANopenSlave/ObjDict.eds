@@ -3,20 +3,20 @@ FileName=ObjDict.eds
 FileVersion=1
 FileRevision=1
 EDSVersion=4.0
-Description=Slave AVR Test
-CreationTime=08:25PM
-CreationDate=03-09-2015
+Description=Arduino Generic CAN Open Node with temperature, humidity and pressure sensor and testing feature
+CreationTime=08:46PM
+CreationDate=03-31-2015
 CreatedBy=CANFestival
-ModificationTime=08:25PM
-ModificationDate=03-09-2015
+ModificationTime=08:46PM
+ModificationDate=03-31-2015
 ModifiedBy=CANFestival
 
 [DeviceInfo]
 VendorName=CANFestival
-VendorNumber=0x00000000
+VendorNumber=0x154F12EE
 ProductName=ObjDict
-ProductNumber=0x00000000
-RevisionNumber=0x00000000
+ProductNumber=0x0000A6C0
+RevisionNumber=0x00000001
 BaudRate_10=1
 BaudRate_20=1
 BaudRate_50=1
@@ -31,8 +31,8 @@ Granularity=8
 DynamicChannelsSupported=0
 CompactPDO=0
 GroupMessaging=0
-NrOfRXPDO=0
-NrOfTXPDO=3
+NrOfRXPDO=1
+NrOfTXPDO=4
 LSS_Supported=0
 
 [DummyUsage]
@@ -58,7 +58,7 @@ ParameterName=Device Type
 ObjectType=0x7
 DataType=0x0007
 AccessType=ro
-DefaultValue=197009
+DefaultValue=0
 PDOMapping=0
 
 [1001]
@@ -87,7 +87,7 @@ ParameterName=Vendor ID
 ObjectType=0x7
 DataType=0x0007
 AccessType=ro
-DefaultValue=0
+DefaultValue=357503726
 PDOMapping=0
 
 [1018sub2]
@@ -95,7 +95,7 @@ ParameterName=Product Code
 ObjectType=0x7
 DataType=0x0007
 AccessType=ro
-DefaultValue=0
+DefaultValue=42688
 PDOMapping=0
 
 [1018sub3]
@@ -103,7 +103,7 @@ ParameterName=Revision Number
 ObjectType=0x7
 DataType=0x0007
 AccessType=ro
-DefaultValue=0
+DefaultValue=1
 PDOMapping=0
 
 [1018sub4]
@@ -111,11 +111,11 @@ ParameterName=Serial Number
 ObjectType=0x7
 DataType=0x0007
 AccessType=ro
-DefaultValue=0
+DefaultValue=1
 PDOMapping=0
 
 [OptionalObjects]
-SupportedObjects=15
+SupportedObjects=19
 1=0x1003
 2=0x1005
 3=0x1006
@@ -125,27 +125,55 @@ SupportedObjects=15
 7=0x1014
 8=0x1017
 9=0x1200
-10=0x1800
-11=0x1801
-12=0x1802
-13=0x1A00
-14=0x1A01
-15=0x1A02
+10=0x1400
+11=0x1600
+12=0x1800
+13=0x1801
+14=0x1802
+15=0x1803
+16=0x1A00
+17=0x1A01
+18=0x1A02
+19=0x1A03
 
 [1003]
 ParameterName=Pre-defined Error Field
 ObjectType=0x8
-SubNumber=2
+SubNumber=5
 
 [1003sub0]
 ParameterName=Number of Errors
 ObjectType=0x7
 DataType=0x0005
 AccessType=rw
-DefaultValue=1
+DefaultValue=4
 PDOMapping=0
 
 [1003sub1]
+ParameterName=Standard Error Field
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0
+PDOMapping=0
+
+[1003sub2]
+ParameterName=Standard Error Field
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0
+PDOMapping=0
+
+[1003sub3]
+ParameterName=Standard Error Field
+ObjectType=0x7
+DataType=0x0007
+AccessType=ro
+DefaultValue=0
+PDOMapping=0
+
+[1003sub4]
 ParameterName=Standard Error Field
 ObjectType=0x7
 DataType=0x0007
@@ -174,7 +202,7 @@ ParameterName=Manufacturer Device Name
 ObjectType=0x7
 DataType=0x0009
 AccessType=ro
-DefaultValue=
+DefaultValue=AGCON1
 PDOMapping=0
 
 [1009]
@@ -182,7 +210,7 @@ ParameterName=Manufacturer Hardware Version
 ObjectType=0x7
 DataType=0x0009
 AccessType=ro
-DefaultValue=
+DefaultValue=0.1
 PDOMapping=0
 
 [100A]
@@ -190,7 +218,7 @@ ParameterName=Manufacturer Software Version
 ObjectType=0x7
 DataType=0x0009
 AccessType=ro
-DefaultValue=
+DefaultValue=0.7
 PDOMapping=0
 
 [1014]
@@ -236,6 +264,80 @@ ObjectType=0x7
 DataType=0x0007
 AccessType=ro
 DefaultValue=$NODEID+0x580
+PDOMapping=0
+
+[1400]
+ParameterName=Receive PDO 1 Parameter
+ObjectType=0x9
+SubNumber=6
+
+[1400sub0]
+ParameterName=Highest SubIndex Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=6
+PDOMapping=0
+
+[1400sub1]
+ParameterName=COB ID used by PDO
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x200
+PDOMapping=0
+
+[1400sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1400sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1400sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1400sub6]
+ParameterName=SYNC start value
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1600]
+ParameterName=Receive PDO 1 Mapping
+ObjectType=0x8
+SubNumber=2
+
+[1600sub0]
+ParameterName=Number of Entries
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=1
+PDOMapping=0
+
+[1600sub1]
+ParameterName=PDO 1 Mapping for an application object 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=537329665
 PDOMapping=0
 
 [1800]
@@ -397,6 +499,59 @@ AccessType=rw
 DefaultValue=0
 PDOMapping=0
 
+[1803]
+ParameterName=Transmit PDO 4 Parameter
+ObjectType=0x9
+SubNumber=6
+
+[1803sub0]
+ParameterName=Highest SubIndex Supported
+ObjectType=0x7
+DataType=0x0005
+AccessType=ro
+DefaultValue=6
+PDOMapping=0
+
+[1803sub1]
+ParameterName=COB ID used by PDO
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=$NODEID+0x480
+PDOMapping=0
+
+[1803sub2]
+ParameterName=Transmission Type
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1803sub3]
+ParameterName=Inhibit Time
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1803sub5]
+ParameterName=Event Timer
+ObjectType=0x7
+DataType=0x0006
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
+[1803sub6]
+ParameterName=SYNC start value
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=0
+PDOMapping=0
+
 [1A00]
 ParameterName=Transmit PDO 1 Mapping
 ObjectType=0x8
@@ -476,14 +631,39 @@ AccessType=rw
 DefaultValue=537133088
 PDOMapping=0
 
+[1A03]
+ParameterName=Transmit PDO 4 Mapping
+ObjectType=0x8
+SubNumber=2
+
+[1A03sub0]
+ParameterName=Number of Entries
+ObjectType=0x7
+DataType=0x0005
+AccessType=rw
+DefaultValue=1
+PDOMapping=0
+
+[1A03sub1]
+ParameterName=PDO 4 Mapping for a process data variable 1
+ObjectType=0x7
+DataType=0x0007
+AccessType=rw
+DefaultValue=537460768
+PDOMapping=0
+
 [ManufacturerObjects]
-SupportedObjects=6
+SupportedObjects=10
 1=0x2000
 2=0x2001
 3=0x2002
 4=0x2003
 5=0x2004
 6=0x2005
+7=0x2006
+8=0x2007
+9=0x2008
+10=0x2009
 
 [2000]
 ParameterName=DHT22 Temperature
@@ -531,4 +711,36 @@ ObjectType=0x7
 DataType=0x0009
 AccessType=rw
 DefaultValue=
+PDOMapping=1
+
+[2006]
+ParameterName=Lock
+ObjectType=0x7
+DataType=0x0001
+AccessType=rw
+DefaultValue=0
+PDOMapping=1
+
+[2007]
+ParameterName=Switch1
+ObjectType=0x7
+DataType=0x0001
+AccessType=rw
+DefaultValue=0
+PDOMapping=1
+
+[2008]
+ParameterName=Switch1 TimeOut
+ObjectType=0x7
+DataType=0x0004
+AccessType=rw
+DefaultValue=0
+PDOMapping=1
+
+[2009]
+ParameterName=Main Voltage
+ObjectType=0x7
+DataType=0x0008
+AccessType=ro
+DefaultValue=0.0
 PDOMapping=1
