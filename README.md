@@ -1,3 +1,5 @@
+# This Project is no longer maintained. Please see if this might be an alternative for you: https://github.com/jgeisler0303/CANFestivino
+
 Introduction
 ============
 This project aims to provide hardware and software to build a versatile and generic device that can be used to connect all sorts of sensors and actuators to a CANopen network. My main intention is to use these devices in home automation applications.
